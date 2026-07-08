@@ -1,0 +1,1344 @@
+{% comment %}
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  Section  : fraik-product                                       │
+  │  Chemin   : sections/fraik-product.liquid                       │
+  └─────────────────────────────────────────────────────────────────┘
+{% endcomment %}
+
+<style>
+:root{
+  --navy:#0A1628;
+  --white:#FFFFFF;
+  --ice:#F2F8FA;
+  --ink:#0A1628;
+  --steel:#4A6572;
+  --cyan:#00C2D9;
+  --cyan-deep:#0092A8;
+  --line:#DCE9EC;
+  --font-display:'Helvetica Neue',Arial,sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'Courier New',monospace;
+}
+.fraik-wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
+
+/* ---- Bandeau défilant ---- */
+.marquee-bar{background:var(--navy);overflow:hidden;white-space:nowrap;padding:10px 0;}
+.marquee-track{display:inline-block;animation:fraik-scroll 22s linear infinite;font-family:var(--font-mono);font-size:12.5px;letter-spacing:0.06em;color:var(--white);}
+.marquee-track span{margin-right:48px;color:var(--cyan);}
+.mq-urgent{color:#D93025!important;}
+@keyframes fraik-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* ---- Hero ---- */
+.fraik-hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:44px 0 30px;align-items:start;}
+.gallery{position:relative;}
+.gallery-main{aspect-ratio:1/1;background:linear-gradient(155deg,var(--ice),#E4F1F4);border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.gallery-tag{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.05em;color:var(--navy);background:var(--ice);border:1px solid var(--line);border-radius:4px;padding:5px 12px;margin-bottom:10px;}
+.gallery-thumbs{display:flex;gap:10px;margin-top:12px;}
+.thumb{flex:1;aspect-ratio:1/1;background:var(--ice);border:2px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--cyan-deep);cursor:pointer;overflow:hidden;}
+.thumb img{width:100%;height:100%;object-fit:contain;}
+.thumb.active{border-color:var(--cyan-deep);}
+
+/* ---- Infos produit ---- */
+.fraik-eyebrow{font-family:var(--font-mono);font-size:11.5px;letter-spacing:0.1em;color:var(--cyan-deep);text-transform:uppercase;font-weight:700;margin-bottom:10px;}
+.fraik-hero h1{font-family:var(--font-display);font-size:26px;line-height:1.2;color:var(--navy);font-weight:800;letter-spacing:-0.01em;margin-bottom:0;}
+.hero-sub-args{font-size:14px;line-height:1.55;color:var(--steel);margin-top:10px;max-width:440px;}
+.stars-line{display:flex;align-items:center;gap:8px;margin-top:16px;font-size:13.5px;color:var(--steel);}
+.stars-line .stars{color:#F5A623;letter-spacing:1px;}
+.price-block{display:flex;align-items:baseline;gap:12px;margin-top:22px;}
+.price-now{font-family:var(--font-display);font-size:32px;font-weight:800;color:var(--navy);}
+.price-then{font-size:16px;color:var(--steel);text-decoration:line-through;opacity:0.7;}
+.price-save{font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--cyan-deep);background:rgba(0,194,217,0.1);padding:4px 9px;border-radius:4px;}
+.fraik-btn{width:100%;background:var(--cyan-deep);color:var(--white);border:none;padding:17px 30px;font-size:14.5px;font-weight:800;letter-spacing:0.03em;border-radius:6px;cursor:pointer;margin-top:20px;display:block;text-align:center;}
+.fraik-btn:disabled{opacity:0.55;cursor:not-allowed;}
+.hero-trust-line{font-family:var(--font-mono);font-size:11px;color:var(--steel);text-align:center;margin-top:10px;letter-spacing:0.04em;}
+.fraik-pay-badges{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px;}
+.fraik-pay-icon{height:24px;width:auto;display:inline-block;vertical-align:middle;}
+.reassure-item .fraik-pay-badges{margin-top:8px;gap:6px;}
+.reassure-item .fraik-pay-icon{height:20px;}
+
+/* ---- Bénéfices hero ---- */
+.fraik-benefits-list{list-style:none;margin:20px 0 0;padding:20px 0 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:14px;}
+.fraik-benefits-list li{display:flex;gap:12px;align-items:flex-start;}
+.fbl-icon{font-size:19px;flex-shrink:0;line-height:1.35;}
+.fbl-text strong{display:block;font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:3px;line-height:1.3;}
+.fbl-text p{font-size:12.5px;color:var(--steel);line-height:1.5;margin:0;}
+
+/* ---- Sections générales ---- */
+.fraik-section{padding:64px 0;}
+.fraik-section-head{text-align:center;margin-bottom:40px;}
+.fraik-section-head h2{font-family:var(--font-display);font-size:28px;color:var(--navy);font-weight:800;}
+.reassure-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.reassure-item{background:var(--ice);border:1px solid var(--line);border-radius:10px;padding:26px 20px;text-align:center;}
+.reassure-item .ic{font-size:22px;margin-bottom:12px;}
+.reassure-item h4{font-size:13.5px;color:var(--navy);font-weight:700;margin-bottom:6px;}
+.reassure-item p{font-size:12px;color:var(--steel);line-height:1.5;}
+
+/* ---- Nettoyage ---- */
+.clean-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.clean-card{background:var(--ice);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.clean-card img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;}
+.clean-caption{padding:16px 20px;font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:var(--navy);letter-spacing:0.04em;line-height:1.45;}
+
+
+/* ---- Fonds de section ---- */
+.fraik-full-bg{width:100%;}
+.fraik-bg-ice{background:var(--ice);}
+.fraik-bg-mist{background:#EEF3F6;}
+
+/* ---- CTA final ---- */
+.fraik-final{background:var(--navy);padding:60px 0;text-align:center;}
+.fraik-final h2{font-family:var(--font-display);font-size:30px;color:var(--white);font-weight:800;margin-bottom:12px;}
+.fraik-final p{color:#B8CCD6;font-size:14.5px;margin-bottom:24px;}
+.fraik-final .fraik-btn{width:auto;display:inline-block;padding:16px 36px;margin-top:0;}
+
+/* ---- Bénéfices ---- */
+.fraik-benefits{padding:48px 0;}
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.benefit-card{background:var(--ice);border:1px solid var(--line);border-radius:10px;padding:26px 20px;text-align:center;}
+.benefit-card .ic{font-size:24px;margin-bottom:12px;}
+.benefit-card h4{font-size:13.5px;color:var(--navy);font-weight:700;margin-bottom:8px;}
+.benefit-card p{font-size:12.5px;color:var(--steel);line-height:1.5;}
+
+/* ---- Bundle ---- */
+.fraik-bundle{padding:48px 0;}
+.bundle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.bundle-card{background:var(--ice);border:2px solid var(--line);border-radius:12px;padding:28px 22px 24px;text-align:center;position:relative;}
+.bundle-card.best{border-color:var(--cyan-deep);background:var(--white);}
+.bundle-popular{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--cyan-deep);color:var(--white);font-family:var(--font-mono);font-size:10px;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:0.05em;white-space:nowrap;}
+.bundle-qty{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--cyan-deep);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+.bundle-name{font-family:var(--font-display);font-size:22px;font-weight:800;color:var(--navy);margin-bottom:6px;}
+.bundle-desc{font-size:13px;color:var(--steel);margin-bottom:16px;}
+.bundle-price{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--navy);margin-bottom:16px;}
+.bundle-price-block{margin-bottom:16px;}
+.bundle-price-block .bundle-price{margin-bottom:0;}
+.bundle-price-block .price-then{display:block;font-size:14px;margin-bottom:4px;}
+.bundle-price-row{display:flex;align-items:center;justify-content:center;gap:10px;}
+
+/* ---- Avant/Après ---- */
+.fraik-avap{padding:56px 0;}
+.avap-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.avap-pair{display:flex;flex-direction:column;gap:8px;}
+.avap-context{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:0.06em;margin:0 0 4px;}
+.avap-item{position:relative;border-radius:10px;overflow:hidden;}
+.avap-item img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover;}
+.avap-badge{position:absolute;top:10px;left:10px;font-family:var(--font-mono);font-size:10px;font-weight:700;padding:4px 10px;border-radius:3px;letter-spacing:0.06em;}
+.avap-badge.avant{background:rgba(74,101,114,0.85);color:var(--white);}
+.avap-badge.apres{background:var(--cyan-deep);color:var(--white);}
+
+/* ---- Avis clients ---- */
+.fraik-reviews{padding:56px 0 0;}
+.reviews-header{text-align:center;margin-bottom:36px;}
+.reviews-score-display{line-height:1;margin:10px 0 8px;}
+.reviews-score-num{font-family:var(--font-display);font-size:48px;font-weight:800;color:var(--navy);}
+.reviews-score-denom{font-family:var(--font-display);font-size:24px;font-weight:700;color:var(--steel);}
+.reviews-stars-header{color:#00B67A;font-size:22px;letter-spacing:3px;margin-bottom:6px;}
+.reviews-count-label{font-size:13.5px;color:var(--steel);}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.reviews-grid-more{margin-top:16px;}
+.review-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 2px 8px rgba(10,22,40,0.06);min-width:0;overflow:hidden;}
+.review-card-top{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.review-avatar{width:40px;height:40px;border-radius:50%;background:var(--ice);border:1px solid var(--line);flex-shrink:0;overflow:hidden;}
+.review-avatar svg{width:100%;height:100%;display:block;}
+.review-avatar-photo{width:56px;height:56px;border-radius:8px;flex-shrink:0;overflow:hidden;border:1px solid var(--line);}
+.review-avatar-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+@media(max-width:820px){.review-avatar-photo{width:64px;height:64px;}}
+.review-meta{flex:1;min-width:0;}
+.review-rating{color:#00B67A;font-size:13px;letter-spacing:1px;line-height:1;margin-bottom:3px;}
+.review-author{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--navy);}
+.review-text{font-size:13px;color:var(--steel);line-height:1.6;margin:0;overflow-wrap:break-word;word-break:break-word;}
+.reviews-more-wrap{max-height:0;overflow:hidden;transition:max-height 0.55s ease;}
+.reviews-toggle-wrap{text-align:center;margin-top:28px;}
+.fraik-reviews-btn{background:transparent;border:2px solid var(--cyan-deep);color:var(--cyan-deep);padding:13px 28px;font-size:14px;font-weight:700;border-radius:6px;cursor:pointer;letter-spacing:0.02em;transition:background 0.2s,color 0.2s;}
+.fraik-reviews-btn:hover{background:var(--cyan-deep);color:var(--white);}
+
+/* ---- Lightbox avis ---- */
+.review-avatar-photo img{cursor:pointer;}
+.fraik-lb{display:none;position:fixed;inset:0;background:rgba(10,22,40,0.88);z-index:9000;align-items:center;justify-content:center;cursor:pointer;}
+.fraik-lb.open{display:flex;}
+.fraik-lb-img{max-width:88vw;max-height:84vh;border-radius:12px;object-fit:contain;box-shadow:0 8px 40px rgba(0,0,0,0.45);cursor:default;}
+.fraik-lb-close{position:absolute;top:18px;right:22px;background:none;border:none;color:#fff;font-size:36px;line-height:1;cursor:pointer;opacity:0.82;padding:4px 8px;}
+.fraik-lb-close:hover{opacity:1;}
+
+/* ---- Comment l'utiliser ---- */
+.fraik-howto{padding:56px 0;}
+.howto-steps{display:flex;align-items:stretch;gap:12px;}
+.howto-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 20px 24px;background:var(--ice);border:1px solid var(--line);border-radius:12px;position:relative;}
+.howto-num{position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:28px;height:28px;background:var(--cyan-deep);color:var(--white);border-radius:50%;font-family:var(--font-mono);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.howto-icon{margin-bottom:12px;margin-top:4px;}
+.howto-text h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:5px;line-height:1.3;}
+.howto-text p{font-size:12.5px;color:var(--steel);line-height:1.5;margin:0;}
+.howto-sep{flex-shrink:0;color:var(--cyan-deep);font-size:22px;font-weight:300;align-self:center;padding:0 4px;line-height:1;}
+@media(max-width:820px){.howto-steps{flex-direction:column;}.howto-sep{align-self:center;transform:rotate(90deg);padding:4px 0;}}
+
+/* ---- Comparatif ---- */
+.fraik-compare{padding:56px 0 0;}
+.compare-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.compare-tbl{width:100%;border-collapse:collapse;min-width:480px;font-size:13px;}
+.compare-tbl th,.compare-tbl td{padding:13px 14px;text-align:center;border-bottom:1px solid var(--line);vertical-align:middle;}
+.compare-tbl th{font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:0.04em;background:var(--ice);color:var(--navy);}
+.compare-tbl td:first-child,.compare-tbl th:first-child{text-align:left;font-weight:600;}
+.fraik-col{background:rgba(0,146,168,0.05);border-left:2px solid var(--cyan-deep);border-right:2px solid var(--cyan-deep);}
+.fraik-col-head{background:var(--ice)!important;color:var(--navy)!important;border-top:2px solid var(--cyan-deep)!important;}
+.compare-tbl tbody tr:last-child .fraik-col{border-bottom:2px solid var(--cyan-deep);}
+.c-yes{color:var(--cyan-deep);font-weight:700;}
+.c-no{color:#B0C4CC;}
+.c-mid{color:var(--steel);}
+.compare-cards{display:none;}
+
+/* ---- FAQ ---- */
+.fraik-faq{padding:56px 0 0;}
+.faq-list{max-width:720px;margin:0 auto;}
+details.faq-item{border-bottom:1px solid var(--line);}
+details.faq-item summary{padding:18px 0;font-size:14px;font-weight:700;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;}
+details.faq-item summary::-webkit-details-marker{display:none;}
+details.faq-item summary::after{content:'+';font-size:20px;color:var(--cyan-deep);font-weight:300;flex-shrink:0;}
+details.faq-item[open] summary::after{content:'−';}
+.faq-answer{padding:0 0 18px;font-size:13.5px;color:var(--steel);line-height:1.65;}
+
+/* ---- Pourquoi ça marche ---- */
+.fraik-pourquoi{padding:56px 0;}
+.pourquoi-content{max-width:720px;}
+.pourquoi-content h2{font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--navy);line-height:1.25;margin-bottom:14px;}
+.pourquoi-content p{font-size:14px;line-height:1.65;color:var(--steel);}
+.pourquoi-disclaimer{font-size:12.5px;color:var(--steel);font-style:italic;margin-top:10px;opacity:0.85;}
+.pourquoi-steps{display:flex;gap:0;margin-top:44px;align-items:flex-start;}
+.pourquoi-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 20px;position:relative;}
+.pourquoi-step:not(:last-child)::after{content:'→';position:absolute;right:-10px;top:16px;color:var(--cyan-deep);font-size:22px;font-weight:300;line-height:1;}
+.pourquoi-step-icon{width:44px;height:44px;margin-bottom:12px;}
+.pourquoi-step h4{font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:0;line-height:1.3;}
+
+/* ---- Sticky ATC mobile ---- */
+.sticky-atc{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--line);padding:12px 16px 16px;z-index:999;box-shadow:0 -4px 20px rgba(10,22,40,0.1);}
+.sticky-atc-inner{display:flex;align-items:center;gap:12px;max-width:600px;margin:0 auto;}
+.sticky-atc-info{flex:1;min-width:0;}
+.sticky-atc-name{display:block;font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--navy);}
+.sticky-atc-price{display:block;font-size:13px;font-weight:700;color:var(--cyan-deep);}
+.sticky-atc-btn{background:var(--cyan-deep);color:var(--white);border:none;padding:13px 20px;font-size:13.5px;font-weight:800;border-radius:6px;cursor:pointer;white-space:nowrap;flex-shrink:0;}
+.sticky-atc-btn:disabled{opacity:0.55;cursor:not-allowed;}
+
+/* ---- Variant picker ---- */
+.fraik-variant-picker{margin:16px 0;}
+.fraik-option-label{font-family:var(--font-mono);font-size:11px;font-weight:700;color:var(--navy);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.fraik-option-selected{color:var(--cyan-deep);text-transform:none;}
+.fraik-option-values{display:flex;gap:8px;flex-wrap:wrap;}
+.fraik-opt-btn{font-family:var(--font-mono);font-size:12px;font-weight:700;border:2px solid var(--line);background:var(--white);color:var(--navy);padding:7px 18px;border-radius:6px;cursor:pointer;transition:border-color 0.15s,background 0.15s,color 0.15s;letter-spacing:0.04em;}
+.fraik-opt-btn:hover{border-color:var(--cyan-deep);color:var(--cyan-deep);}
+.fraik-opt-btn.active{border-color:var(--cyan-deep);background:var(--cyan-deep);color:var(--white);}
+.fraik-opt-btn[aria-disabled="true"]{opacity:0.4;cursor:not-allowed;pointer-events:none;}
+
+/* ---- Ordre des sections (page flow) ---- */
+.fraik-page-flow{display:flex;flex-direction:column;width:100%;}
+
+/* ---- Badge stock urgence ---- */
+@keyframes fraik-pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.fraik-stock-badge{font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:#D93025;letter-spacing:0.05em;text-align:center;margin-top:10px;animation:fraik-pulse 1.5s ease-in-out infinite;}
+
+@media(max-width:820px){
+  .fraik-hero{grid-template-columns:1fr;}
+  .fraik-hero h1{font-size:22px;}
+  .hero-sub-args{font-size:13.5px;}
+  .reassure-grid{grid-template-columns:repeat(2,1fr);}
+  .benefits-grid{grid-template-columns:1fr;}
+  .avap-grid{grid-template-columns:1fr;}
+  .bundle-grid{grid-template-columns:1fr;}
+
+  .clean-grid{grid-template-columns:1fr;}
+  .compare-scroll{display:none;}
+  .compare-cards{display:flex;flex-direction:column;gap:14px;}
+  .ccard{background:var(--white);border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .ccard-fraik{border:2px solid var(--cyan-deep);}
+  .ccard-head{padding:13px 16px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.05em;color:var(--navy);background:var(--ice);border-bottom:1px solid var(--line);}
+  .ccard-fraik .ccard-head{border-bottom:2px solid var(--cyan-deep);}
+  .ccard-row{display:flex;justify-content:space-between;align-items:flex-start;padding:11px 16px;border-bottom:1px solid var(--line);gap:10px;font-size:13px;}
+  .ccard-row:last-child{border-bottom:none;}
+  .ccard-label{color:var(--steel);font-size:11.5px;flex:1;line-height:1.4;}
+  .ccard-val{text-align:right;flex-shrink:0;max-width:54%;line-height:1.4;}
+  .pourquoi-steps{flex-direction:column;gap:28px;align-items:stretch;}
+  .pourquoi-step:not(:last-child)::after{content:'↓';right:auto;top:auto;bottom:-22px;left:50%;transform:translateX(-50%);font-size:18px;}
+  .reviews-grid{grid-template-columns:1fr;}
+  .sticky-atc.visible{display:block;}
+  .fraik-page-flow > *{order:10;min-width:0;}
+  .fraik-hero-wrap{order:1;}
+  .fraik-bundle-wrap{order:2;}
+}
+</style>
+
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>&#10052;</span> LIVRAISON OFFERTE &nbsp;&nbsp;·&nbsp;&nbsp; BOUTIQUE FRANÇAISE &nbsp;&nbsp;·&nbsp;&nbsp; PAIEMENT SÉCURISÉ &nbsp;&nbsp;·&nbsp;&nbsp; <span class="mq-urgent">🔴 STOCK LIMITÉ</span> &nbsp;&nbsp;·&nbsp;&nbsp;
+    <span>&#10052;</span> LIVRAISON OFFERTE &nbsp;&nbsp;·&nbsp;&nbsp; BOUTIQUE FRANÇAISE &nbsp;&nbsp;·&nbsp;&nbsp; PAIEMENT SÉCURISÉ &nbsp;&nbsp;·&nbsp;&nbsp; <span class="mq-urgent">🔴 STOCK LIMITÉ</span> &nbsp;&nbsp;·&nbsp;&nbsp;
+  </div>
+</div>
+
+<div class="fraik-page-flow">
+
+<div class="fraik-wrap fraik-hero-wrap">
+  <section class="fraik-hero">
+
+    <div class="gallery">
+      <div class="gallery-tag">3 EN 1 · 🇫🇷 Entreprise française</div>
+      <div class="gallery-main">
+        {%- if product.featured_image -%}
+          <img id="fraik-main-img"
+               src="{{ product.featured_image | image_url: width: 900 }}"
+               alt="{{ product.featured_image.alt | default: product.title }}"
+               style="width:100%;height:100%;object-fit:contain;border-radius:8px;cursor:pointer;">
+        {%- else -%}
+          <span style="font-size:48px;">❄</span>
+        {%- endif -%}
+      </div>
+      <div class="gallery-thumbs">
+        {%- for image in product.images limit: 8 -%}
+          <div class="thumb{%- if forloop.first %} active{%- endif -%}"
+               onclick="document.getElementById('fraik-main-img').src='{{ image | image_url: width: 900 }}';this.closest('.gallery-thumbs').querySelectorAll('.thumb').forEach(function(t){t.classList.remove('active')});this.classList.add('active');">
+            <img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | default: product.title }}" loading="lazy">
+          </div>
+        {%- else -%}
+          <div class="thumb active">❄</div>
+          <div class="thumb">≋</div>
+          <div class="thumb">✦</div>
+          <div class="thumb">⇄</div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div>
+      <div class="fraik-eyebrow">{{ product.type | default: "Ventilateur Rafraîchisseur d'Air Portable" }}</div>
+      <h1>Quand la chaleur devient insupportable, ressentez la <span style="color:var(--cyan-deep)">fraîcheur immédiatement</span>.</h1>
+      <div class="hero-sub-args">Fraîk diffuse une fine brume fraîche directement sur vous, sur le visage, la nuque ou au bureau, pour une sensation de soulagement que vous ressentez dès les premières secondes.</div>
+
+      <div class="stars-line">
+        <span class="stars">★★★★★</span> 4,8/5 · 59 avis vérifiés · 🇫🇷 Boutique française
+      </div>
+
+      {%- assign current_variant = product.selected_or_first_available_variant -%}
+      {%- assign sell_price      = current_variant.price -%}
+      {%- assign compare_price   = current_variant.compare_at_price -%}
+      <div class="price-block">
+        <span class="price-now">{{ sell_price | money_without_currency | append: ' €' }}</span>
+        {%- if compare_price > sell_price -%}
+          <span class="price-then">{{ compare_price | money_without_currency | append: ' €' }}</span>
+          {%- assign savings_pct = compare_price | minus: sell_price | times: 100 | divided_by: compare_price -%}
+          <span class="price-save">−{{ savings_pct }}%</span>
+        {%- endif -%}
+      </div>
+
+      {%- if product.has_only_default_variant == false -%}
+      <div class="fraik-variant-picker" id="fraik-variant-picker">
+        {%- for option in product.options_with_values -%}
+        <div class="fraik-option-group">
+          <div class="fraik-option-label">{{ option.name }} : <span class="fraik-option-selected" id="fraik-opt-val-{{ option.position }}">{{ option.selected_value }}</span></div>
+          <div class="fraik-option-values">
+            {%- for value in option.values -%}
+            <button type="button"
+              class="fraik-opt-btn{% if option.selected_value == value %} active{% endif %}"
+              data-option-pos="{{ option.position }}"
+              data-option-val="{{ value | escape }}"
+              aria-label="{{ option.name }}: {{ value }}">{{ value }}</button>
+            {%- endfor -%}
+          </div>
+        </div>
+        {%- endfor -%}
+      </div>
+      {%- endif -%}
+
+      {% form 'product', product, id: 'fraik-product-form', novalidate: 'novalidate' %}
+        <input type="hidden" name="id" value="{{ current_variant.id }}">
+        <button type="submit" name="add" class="fraik-btn"
+          {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>
+          {%- if product.available -%}Je veux sentir la fraîcheur → {{ product.price | money_without_currency | append: ' €' }}{%- else -%}Rupture de stock{%- endif -%}
+        </button>
+      {% endform %}
+      <p class="fraik-stock-badge">🔴 Plus que quelques unités en stock</p>
+
+      <div class="hero-trust-line">Paiement sécurisé · Livraison suivie · Retour 15j</div>
+      <div class="fraik-pay-badges">
+        {%- for type in shop.enabled_payment_types -%}
+          {{ type | payment_type_svg_tag: class: 'fraik-pay-icon' }}
+        {%- endfor -%}
+      </div>
+
+      <ul class="fraik-benefits-list">
+        <li>
+          <span class="fbl-icon">❄️</span>
+          <div class="fbl-text">
+            <strong>Une fraîcheur que vous ressentez immédiatement</strong>
+            <p>La fine brume rafraîchissante apporte une sensation de fraîcheur dès les premières secondes.</p>
+          </div>
+        </li>
+        <li>
+          <span class="fbl-icon">💨</span>
+          <div class="fbl-text">
+            <strong>Soulage les pics de chaleur rapidement</strong>
+            <p>Quand la chaleur devient insupportable, profitez d'une sensation de confort ciblée sur vous.</p>
+          </div>
+        </li>
+        <li>
+          <span class="fbl-icon">💧</span>
+          <div class="fbl-text">
+            <strong>Brume fraîche + ventilation réglable</strong>
+            <p>Combine ventilation et brumisation pour adapter votre niveau de fraîcheur.</p>
+          </div>
+        </li>
+        <li>
+          <span class="fbl-icon">🤫</span>
+          <div class="fbl-text">
+            <strong>Silencieux et agréable au quotidien</strong>
+            <p>Idéal au bureau, dans le salon ou pendant vos moments de détente.</p>
+          </div>
+        </li>
+        <li>
+          <span class="fbl-icon">👜</span>
+          <div class="fbl-text">
+            <strong>Léger et facile à déplacer</strong>
+            <p>Emportez votre bulle de fraîcheur d'une pièce à l'autre.</p>
+          </div>
+        </li>
+        <li>
+          <span class="fbl-icon">⚡</span>
+          <div class="fbl-text">
+            <strong>Branchez-le et profitez</strong>
+            <p>Aucune installation compliquée, il suffit de le brancher.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+  </section>
+</div>
+
+<!-- ── Pourquoi ça marche ── -->
+<div class="fraik-full-bg fraik-bg-ice">
+<div class="fraik-wrap">
+  <section class="fraik-pourquoi">
+    <div class="pourquoi-content">
+      <h2>Un ventilateur déplace l'air chaud de la pièce. Fraîk, non.</h2>
+      <p>Il fait passer l'air par son réservoir d'eau et te renvoie une brume fraîche que tu sens dès la première seconde, sur ta peau, elle s'évapore et emporte la chaleur.</p>
+      <p class="pourquoi-disclaimer">Ce n'est pas une climatisation : ça ne refroidit pas toute la pièce. Ça crée une bulle de fraîcheur ciblée, sur toi, quand tu en as besoin.</p>
+    </div>
+    <div class="pourquoi-steps">
+      <div class="pourquoi-step">
+        <svg class="pourquoi-step-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="22" cy="22" r="10" stroke="#0092A8" stroke-width="2"/>
+          <path d="M6 22h6M32 22h6M22 6v6M22 32v6" stroke="#0092A8" stroke-width="2" stroke-linecap="round"/>
+          <path d="M16 22h12" stroke="#0092A8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M24 18l4 4-4 4" stroke="#0092A8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h4>Air chaud aspiré</h4>
+      </div>
+      <div class="pourquoi-step">
+        <svg class="pourquoi-step-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M22 7L11 22a11 11 0 0022 0L22 7z" stroke="#0092A8" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M15 27a7 7 0 007 6" stroke="#0092A8" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h4>Passe par l'eau</h4>
+      </div>
+      <div class="pourquoi-step">
+        <svg class="pourquoi-step-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 16c3-2 7-2 10 0s7 2 10 0" stroke="#0092A8" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M6 23c3-2 7-2 10 0s7 2 10 0" stroke="#0092A8" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M6 30c3-2 7-2 10 0s7 2 10 0" stroke="#0092A8" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="35" cy="13" r="4" stroke="#0092A8" stroke-width="2"/>
+          <path d="M35 17v4M32 25c0-2 6-2 6 0v5h-6v-5z" stroke="#0092A8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h4>Brume fraîche sur toi</h4>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<!-- ── Comment l'utiliser ── -->
+<div class="fraik-wrap">
+  <section class="fraik-howto">
+    <div class="fraik-section-head">
+      <div class="fraik-eyebrow">Utilisation</div>
+      <h2>Comment l'utiliser</h2>
+    </div>
+    <div class="howto-steps">
+      <div class="howto-step">
+        <div class="howto-num">1</div>
+        <div class="howto-icon">
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="44" height="44">
+            <path d="M22 7L13 22a9 9 0 0018 0L22 7z" stroke="#0092A8" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M16 27a6 6 0 006 5" stroke="#0092A8" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="howto-text">
+          <h4>Remplis le réservoir d'eau</h4>
+          <p>Glaçons en option pour un effet plus marqué</p>
+        </div>
+      </div>
+      <div class="howto-sep">→</div>
+      <div class="howto-step">
+        <div class="howto-num">2</div>
+        <div class="howto-icon">
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="44" height="44">
+            <line x1="22" y1="6" x2="22" y2="18" stroke="#0092A8" stroke-width="2.5" stroke-linecap="round"/>
+            <rect x="13" y="18" width="18" height="12" rx="5" stroke="#0092A8" stroke-width="2"/>
+            <line x1="16" y1="13" x2="16" y2="18" stroke="#0092A8" stroke-width="2" stroke-linecap="round"/>
+            <line x1="28" y1="13" x2="28" y2="18" stroke="#0092A8" stroke-width="2" stroke-linecap="round"/>
+            <line x1="22" y1="30" x2="22" y2="38" stroke="#0092A8" stroke-width="2" stroke-linecap="round"/>
+            <line x1="17" y1="38" x2="27" y2="38" stroke="#0092A8" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="howto-text">
+          <h4>Branche en USB et allume</h4>
+          <p>Prêt en une seconde, aucune installation</p>
+        </div>
+      </div>
+      <div class="howto-sep">→</div>
+      <div class="howto-step">
+        <div class="howto-num">3</div>
+        <div class="howto-icon">
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="44" height="44">
+            <path d="M6 16c3-2 7-2 10 0s7 2 10 0" stroke="#0092A8" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M6 23c3-2 7-2 10 0s7 2 10 0" stroke="#0092A8" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M6 30c3-2 7-2 10 0s7 2 10 0" stroke="#0092A8" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="35" cy="22" r="6" stroke="#00C2D9" stroke-width="1.8"/>
+            <path d="M32.5 22l1.5 1.5 3-3" stroke="#0092A8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="howto-text">
+          <h4>Oriente la brume vers toi</h4>
+          <p>Fraîcheur immédiate : visage, nuque, bureau</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ── Bénéfices ── -->
+<div class="fraik-wrap">
+  <section class="fraik-benefits">
+    <div class="fraik-section-head">
+      <h2>Ce que tu ressens dès la première utilisation</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card"><div class="ic">💧</div><h4>Brume immédiate</h4><p>Tu la sens dès la première seconde</p></div>
+      <div class="benefit-card"><div class="ic">🎯</div><h4>Ciblée sur toi</h4><p>Visage, nuque, ton bureau, ta table de nuit</p></div>
+      <div class="benefit-card"><div class="ic">🔌</div><h4>Partout, sans installation</h4><p>USB, se déplace de pièce en pièce</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ── Avant / Après ── -->
+<div class="fraik-full-bg fraik-bg-mist">
+<div class="fraik-wrap">
+  <section class="fraik-avap">
+    <div class="fraik-section-head">
+      <div class="fraik-eyebrow">La preuve en image</div>
+      <h2>La différence, en une nuit / en une journée</h2>
+    </div>
+    <div class="avap-grid">
+      <div class="avap-pair">
+        <p class="avap-context">Au bureau</p>
+        <div class="avap-item">
+          <img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/ChatGPTImage3juil.2026_19_48_19.png?v=1783112797" alt="Bureau sans le Fraîk" loading="lazy">
+          <span class="avap-badge avant">AVANT</span>
+        </div>
+        <div class="avap-item">
+          <img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/ChatGPTImage3juil.2026_19_53_37.png?v=1783112797" alt="Bureau avec le Fraîk" loading="lazy">
+          <span class="avap-badge apres">APRÈS</span>
+        </div>
+      </div>
+      <div class="avap-pair">
+        <p class="avap-context">Dans la chambre</p>
+        <div class="avap-item">
+          <img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/ChatGPTImage3juil.2026_21_34_35.png?v=1783112797" alt="Lit sans le Fraîk" loading="lazy">
+          <span class="avap-badge avant">AVANT</span>
+        </div>
+        <div class="avap-item">
+          <img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/ChatGPTImage3juil.2026_18_55_10.png?v=1783112797" alt="Lit avec le Fraîk" loading="lazy">
+          <span class="avap-badge apres">APRÈS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+<!-- ── Avis clients ── -->
+<div class="fraik-wrap">
+  <section class="fraik-reviews">
+    <div class="reviews-header">
+      <div class="fraik-eyebrow">Avis vérifiés</div>
+      <div class="reviews-score-display">
+        <span class="reviews-score-num">4,8</span><span class="reviews-score-denom">/5</span>
+      </div>
+      <div class="reviews-stars-header">★★★★★</div>
+      <div class="reviews-count-label">59 avis clients</div>
+    </div>
+
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar-photo"><img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/Ac911d2638b1e4eaa94c31b178f3999e09_jpg_960x960q75_jpg.avif?v=1783203587" alt="Photo client" loading="lazy"></div>
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Céline N., Perpignan</div></div>
+        </div>
+        <p class="review-text">Très bonne surprise. L'appareil est petit mais vraiment efficace quand on reste à proximité. La fonction brume apporte une vraie sensation de fraîcheur pendant les fortes chaleurs.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar-photo"><img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/A72f246e95ec9431bb1fadd7353531230u_jpg_960x960q75_jpg.avif?v=1783203587" alt="Photo client" loading="lazy"></div>
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Léa S., Béziers</div></div>
+        </div>
+        <p class="review-text">Je l'utilise sur mon bureau pendant le télétravail et ça change vraiment le confort quand il fait chaud. Facile à utiliser et assez silencieux.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Quentin C., Reims</div></div>
+        </div>
+        <p class="review-text">Avec de l'eau bien froide, on ressent clairement la différence. Ça ne remplace pas une climatisation, mais pour se rafraîchir personnellement, c'est très efficace.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar-photo"><img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/A56a7385d5e804646a59498010f36c0fbe_jpg_960x960q75_jpg.avif?v=1783203588" alt="Photo client" loading="lazy"></div>
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Vincent L., Tours</div></div>
+        </div>
+        <p class="review-text">J'en ai commandé plusieurs pour la maison. Tous fonctionnent parfaitement et la qualité est meilleure que ce à quoi je m'attendais.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar-photo"><img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/Ac0a23e7d016141f984d82e499e54d4f1q_jpg_960x960q75_jpg.avif?v=1783203588" alt="Photo client" loading="lazy"></div>
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Chloé G., Grenoble</div></div>
+        </div>
+        <p class="review-text">Très bon rapport qualité/prix. La brume est agréable et procure une sensation de fraîcheur immédiate sur le visage.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Julien F., Vannes</div></div>
+        </div>
+        <p class="review-text">Je l'utilise surtout l'après-midi quand la chaleur devient difficile à supporter. Compact, pratique et facile à déplacer.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar-photo"><img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/A695a92bb1d8242338b06b513f7b8b9287_jpg_960x960q75_jpg.avif?v=1783203587" alt="Photo client" loading="lazy"></div>
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Mathieu P., Dijon</div></div>
+        </div>
+        <p class="review-text">J'étais sceptique au départ, mais finalement je suis agréablement surpris. La fonction brumisateur apporte un vrai plus.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar-photo"><img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/A041bfd2692324c268e28a9cd13debde87_jpg_960x960q75_jpg.avif?v=1783203587" alt="Photo client" loading="lazy"></div>
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Camille C., Clermont-Ferrand</div></div>
+        </div>
+        <p class="review-text">Le produit correspond parfaitement à la description. La brumisation fonctionne bien.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Sandrine T., Cholet</div></div>
+        </div>
+        <p class="review-text">Très pratique sur une table de nuit ou un bureau. La sensation de fraîcheur est bien présente.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar-photo"><img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/A2598ede082984c8aa637c1ef087fbe40c_jpg_960x960q75_jpg.avif?v=1783203587" alt="Photo client" loading="lazy"></div>
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Amandine S., Rouen</div></div>
+        </div>
+        <p class="review-text">Je l'ai testé pendant plusieurs jours de forte chaleur et il fait exactement ce que j'attendais.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Yassine S., Troyes</div></div>
+        </div>
+        <p class="review-text">Produit reçu rapidement et bien emballé. La qualité de fabrication est correcte.</p>
+      </div>
+      <div class="review-card">
+        <div class="review-card-top">
+          <div class="review-avatar-photo"><img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/Ad88188b6c3644bac891ffd949487b4d3M_jpg_220x220q75_jpg.avif?v=1783203587" alt="Photo client" loading="lazy"></div>
+          <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Audrey L., Lorient</div></div>
+        </div>
+        <p class="review-text">Je ne pensais pas qu'un appareil aussi compact pouvait être aussi agréable à utiliser.</p>
+      </div>
+    </div>
+
+    <div class="reviews-more-wrap" id="fraik-reviews-more">
+      <div class="reviews-grid reviews-grid-more">
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Romain L., Poitiers</div></div>
+          </div>
+          <p class="review-text">Je l'utilise dans mon bureau et c'est parfait pour les journées chaudes.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Samir S., Strasbourg</div></div>
+          </div>
+          <p class="review-text">Très satisfait de mon achat. La fonction minuterie est pratique.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Priscilla H., Lyon</div></div>
+          </div>
+          <p class="review-text">L'appareil est facile à transporter et à installer.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Manon C., Amiens</div></div>
+          </div>
+          <p class="review-text">Le ventilateur seul est déjà efficace, mais avec la brume activée, la sensation est vraiment plus agréable.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Olivier V., Brest</div></div>
+          </div>
+          <p class="review-text">Je cherchais une solution simple pour supporter les fortes chaleurs sans installer de climatisation.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Patricia P., Angers</div></div>
+          </div>
+          <p class="review-text">Très bon produit pour un usage personnel.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Sandrine C., Besançon</div></div>
+          </div>
+          <p class="review-text">Je suis agréablement surpris par la qualité générale.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Amandine C., Quimper</div></div>
+          </div>
+          <p class="review-text">Je l'utilise quotidiennement depuis plusieurs semaines et j'en suis satisfait.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Romain C., Albi</div></div>
+          </div>
+          <p class="review-text">Avec de l'eau fraîche, l'effet est immédiat.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Damien H., Caen</div></div>
+          </div>
+          <p class="review-text">Très pratique pendant les périodes de canicule.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Aïcha R., Valence</div></div>
+          </div>
+          <p class="review-text">Le produit est conforme aux photos.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Jessica G., Aix-en-Provence</div></div>
+          </div>
+          <p class="review-text">Je recommande pour un bureau, une chambre ou un petit espace personnel.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Nora H., Marseille</div></div>
+          </div>
+          <p class="review-text">Je ne m'attendais pas à autant apprécier la fonction brumisateur.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Djamila C., Avignon</div></div>
+          </div>
+          <p class="review-text">Bonne surprise. La différence de fraîcheur avec la brumisation activée est bien perceptible.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Marie-Claude M., Nîmes</div></div>
+          </div>
+          <p class="review-text">Je l'utilise quasiment tous les jours depuis plusieurs semaines.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Muriel F., Nancy</div></div>
+          </div>
+          <p class="review-text">Lorsque la brume est activée, on ressent vraiment plus de fraîcheur.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★☆</div><div class="review-author">Fatima D., Montpellier</div></div>
+          </div>
+          <p class="review-text">Le produit correspond exactement aux photos. Un peu bruyant à pleine puissance.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Inès S., Pau</div></div>
+          </div>
+          <p class="review-text">Compact et pratique. Très utile pendant les fortes chaleurs.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Bruno T., Chambéry</div></div>
+          </div>
+          <p class="review-text">Excellent rapport qualité/prix.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Sofiane B., Mulhouse</div></div>
+          </div>
+          <p class="review-text">Très bonne option pour un ventilateur de bureau.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Lucas V., Lille</div></div>
+          </div>
+          <p class="review-text">Je ne m'attendais pas à ce qu'il refroidisse autant à proximité.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Lucas L., Toulouse</div></div>
+          </div>
+          <p class="review-text">La fonction brumisation est vraiment agréable.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Fabien B., Le Mans</div></div>
+          </div>
+          <p class="review-text">Parfait pour l'été.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Didier S., La Rochelle</div></div>
+          </div>
+          <p class="review-text">Très bon produit pour supporter les après-midi de forte chaleur.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Rachida S., Bayonne</div></div>
+          </div>
+          <p class="review-text">Plus puissant que je ne l'imaginais.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Assia R., Metz</div></div>
+          </div>
+          <p class="review-text">L'appareil est silencieux et la fonction humidification fonctionne parfaitement.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Alexandre H., Rennes</div></div>
+          </div>
+          <p class="review-text">Petit mais étonnamment efficace.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Hervé V., Annecy</div></div>
+          </div>
+          <p class="review-text">Je l'utilise comme rafraîchisseur personnel sur mon bureau.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Marie-Claude R., Bordeaux</div></div>
+          </div>
+          <p class="review-text">Le produit fonctionne parfaitement depuis sa réception.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Grégory P., Nantes</div></div>
+          </div>
+          <p class="review-text">Avec des glaçons dans le réservoir, la sensation est encore plus agréable.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Alexandre N., Colmar</div></div>
+          </div>
+          <p class="review-text">Le système de brume apporte un vrai confort supplémentaire.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Karim F., Orléans</div></div>
+          </div>
+          <p class="review-text">Je recommande particulièrement pour un usage sur un bureau.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Corinne S., Nice</div></div>
+          </div>
+          <p class="review-text">L'appareil est petit, mais il fait exactement ce que j'attendais.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Lucas H., Limoges</div></div>
+          </div>
+          <p class="review-text">Excellent produit pour l'été.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Mehdi V., Perpignan</div></div>
+          </div>
+          <p class="review-text">Le compartiment permet d'ajouter des glaçons.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Bernard S., Béziers</div></div>
+          </div>
+          <p class="review-text">Les différentes vitesses de ventilation sont pratiques.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Nora G., Reims</div></div>
+          </div>
+          <p class="review-text">J'apprécie particulièrement le changement de couleur des lumières.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Sandrine B., Tours</div></div>
+          </div>
+          <p class="review-text">Le produit est parfaitement adapté à un usage personnel.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Chloé B., Grenoble</div></div>
+          </div>
+          <p class="review-text">Puissant pour sa taille.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Romain T., Vannes</div></div>
+          </div>
+          <p class="review-text">Je l'utilise à côté de mon lit pendant les périodes de chaleur.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★★</div><div class="review-author">Sylvie R., Dijon</div></div>
+          </div>
+          <p class="review-text">Après plus d'un mois d'utilisation, le produit fonctionne toujours parfaitement.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★☆</div><div class="review-author">Farid N., Clermont-Ferrand</div></div>
+          </div>
+          <p class="review-text">Excellent ventilateur de bureau pour le prix.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★☆</div><div class="review-author">Patricia H., Cholet</div></div>
+          </div>
+          <p class="review-text">Le produit est efficace à proximité, mais ne refroidit pas toute une pièce.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★☆</div><div class="review-author">Christelle F., Rouen</div></div>
+          </div>
+          <p class="review-text">L'effet est surtout ressenti lorsqu'il est dirigé vers soi.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★☆</div><div class="review-author">Florian C., Troyes</div></div>
+          </div>
+          <p class="review-text">J'aurais aimé qu'il fonctionne sur batterie.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★☆</div><div class="review-author">Hervé H., Lorient</div></div>
+          </div>
+          <p class="review-text">Le ventilateur est un peu plus bruyant à pleine vitesse.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-card-top">
+            <div class="review-avatar"><svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="14" r="7" fill="#C8D8DC"/><path d="M6 36c0-7.7 6.3-14 14-14s14 6.3 14 14" fill="#C8D8DC"/></svg></div>
+            <div class="review-meta"><div class="review-rating">★★★★☆</div><div class="review-author">Mathieu V., Poitiers</div></div>
+          </div>
+          <p class="review-text">Je pensais qu'il serait plus grand, mais son format est très pratique.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-toggle-wrap">
+      <button class="fraik-reviews-btn" id="fraik-reviews-btn" onclick="fraikToggleReviews()">Voir plus d'avis (47) ↓</button>
+    </div>
+  </section>
+</div>
+
+<!-- ── Bundle Solo / Duo / Trio ── -->
+<div class="fraik-wrap fraik-bundle-wrap">
+  <section class="fraik-bundle">
+    <div class="fraik-section-head">
+      <div class="fraik-eyebrow">Économisez plus</div>
+      <h2>Choisissez votre offre</h2>
+    </div>
+    <div class="bundle-grid">
+      <div class="bundle-card">
+        <div class="bundle-qty">× 1 unité</div>
+        <div class="bundle-name">Solo</div>
+        <div class="bundle-desc">Pour votre chambre ou bureau</div>
+        <div class="bundle-price">{{ product.price | money_without_currency | append: ' €' }}</div>
+        {% form 'product', product, id: 'fraik-bundle-solo', novalidate: 'novalidate' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button type="submit" name="add" class="fraik-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Commander →{%- else -%}Rupture de stock{%- endif -%}</button>
+        {% endform %}
+      </div>
+      <div class="bundle-card best">
+        <div class="bundle-popular">⭐ LE PLUS POPULAIRE</div>
+        <div class="bundle-qty">× 2 unités</div>
+        <div class="bundle-name">Duo</div>
+        <div class="bundle-desc">Chambre + bureau, ou en offrir un</div>
+        <div class="bundle-price-block">
+          <span class="price-then">89,80 €</span>
+          <div class="bundle-price-row">
+            <div class="bundle-price">79,90 €</div><span class="price-save">−11%</span>
+          </div>
+        </div>
+        {% form 'product', product, id: 'fraik-bundle-duo', novalidate: 'novalidate' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="2">
+          <button type="submit" name="add" class="fraik-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Commander →{%- else -%}Rupture de stock{%- endif -%}</button>
+        {% endform %}
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-qty">× 3 unités</div>
+        <div class="bundle-name">Trio</div>
+        <div class="bundle-desc">Toute la maison au frais</div>
+        <div class="bundle-price-block">
+          <span class="price-then">134,70 €</span>
+          <div class="bundle-price-row">
+            <div class="bundle-price">104,90 €</div><span class="price-save">−22%</span>
+          </div>
+        </div>
+        {% form 'product', product, id: 'fraik-bundle-trio', novalidate: 'novalidate' %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="3">
+          <button type="submit" name="add" class="fraik-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Commander →{%- else -%}Rupture de stock{%- endif -%}</button>
+        {% endform %}
+      </div>
+    </div>
+    <p class="fraik-stock-badge">🔴 Plus que quelques unités en stock</p>
+  </section>
+</div>
+
+<!-- ── Garanties ── -->
+<div class="fraik-wrap">
+  <section class="fraik-section" style="padding-top:0;">
+    <div class="reassure-grid">
+      <div class="reassure-item"><div class="ic">🚚</div><h4>Livraison suivie</h4><p>Expédition sous 24-48h, réception estimée 3 à 5 jours ouvrés.</p></div>
+      <div class="reassure-item"><div class="ic">↺</div><h4>15 jours pour changer d'avis</h4><p>Retour gratuit, remboursement intégral.</p></div>
+      <div class="reassure-item"><div class="ic">🔒</div><h4>Paiement sécurisé</h4><div class="fraik-pay-badges">{%- for type in shop.enabled_payment_types -%}{{ type | payment_type_svg_tag: class: 'fraik-pay-icon' }}{%- endfor -%}</div><p>Données chiffrées SSL.</p></div>
+      <div class="reassure-item"><div class="ic">☎</div><h4>Support en français</h4><p>Une question ? Réponse sous 24h.</p></div>
+    </div>
+  </section>
+</div>
+
+<!-- ── FAQ ── -->
+<div class="fraik-wrap">
+  <section class="fraik-faq fraik-section">
+    <div class="fraik-section-head">
+      <div class="fraik-eyebrow">Questions fréquentes</div>
+      <h2>On répond à tout</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>Quel est le délai de livraison ?</summary>
+        <p class="faq-answer">Expédition sous 24-48h, réception estimée <strong>3 à 5 jours ouvrés</strong> en France métropolitaine. Un email de suivi vous est envoyé dès l'expédition.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Est-ce une vraie climatisation ?</summary>
+        <p class="faq-answer">Non, le Fraîk n'est pas un climatiseur. C'est un <strong>rafraîchisseur par évaporation</strong> : il rafraîchit l'air immédiatement autour de vous grâce à la brumisation et abaisse la <em>température ressentie</em> localement. Il ne remplace pas une climatisation pour refroidir une pièce entière.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Faut-il mettre des glaçons dans le réservoir ?</summary>
+        <p class="faq-answer">Non, <strong>l'eau fraîche du robinet suffit</strong>. Les glaçons sont en option si vous voulez un effet plus marqué lors des journées les plus chaudes, mais ce n'est absolument pas obligatoire.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Quelle est la consommation électrique ?</summary>
+        <p class="faq-answer">Le Fraîk fonctionne en <strong>USB-C 5V / 2A</strong>. Sa consommation est très faible, comparable à celle d'un smartphone en charge, ce qui permet une utilisation toute la nuit sans impact notable sur votre facture.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Quelle est la politique de retour ?</summary>
+        <p class="faq-answer">Vous disposez de <strong>15 jours</strong> après réception pour retourner le produit. Remboursement intégral, sans question posée.</p>
+      </details>
+    </div>
+  </section>
+</div>
+
+<!-- ── CTA final ── -->
+<div class="fraik-final">
+  <div class="fraik-wrap">
+    <h2>La canicule ne prévient pas.<br>Soyez prêt avant elle.</h2>
+    <p>Livraison estimée sous 3 à 5 jours ouvrés. Commandez avant la prochaine vague de chaleur.</p>
+    {% form 'product', product, id: 'fraik-product-form-bottom', novalidate: 'novalidate' %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" name="add" class="fraik-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Je commande maintenant →{%- else -%}Rupture de stock{%- endif -%}</button>
+    {% endform %}
+    <p class="fraik-stock-badge" style="color:#FF6B6B;">🔴 Plus que quelques unités en stock</p>
+  </div>
+</div>
+
+<!-- ── Comparatif ── -->
+<div class="fraik-wrap">
+  <section class="fraik-compare">
+    <div class="fraik-section-head">
+      <div class="fraik-eyebrow">Pourquoi le Fraîk ?</div>
+      <h2>Fraîk vs les alternatives</h2>
+    </div>
+    <div class="compare-scroll">
+      <table class="compare-tbl">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="fraik-col fraik-col-head">Fraîk</th>
+            <th>Ventilateur classique</th>
+            <th>Climatiseur mobile</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Prix indicatif</td><td class="fraik-col c-yes">44,90 €</td><td class="c-mid">dès 15 €</td><td class="c-mid">150–400 €</td></tr>
+          <tr><td>Disponibilité</td><td class="fraik-col c-yes">✓ En stock, expédié 24-48h</td><td class="c-mid">Variable</td><td class="c-mid">Délais fréquents</td></tr>
+          <tr><td>Installation</td><td class="fraik-col c-yes">Aucune (USB)</td><td class="c-mid">Aucune</td><td class="c-mid">Tuyau requis</td></tr>
+          <tr><td>Mobilité</td><td class="fraik-col c-yes">✓ Pièce par pièce</td><td class="c-yes">✓ Léger</td><td class="c-no">✗ Encombrant</td></tr>
+          <tr><td>Refroidissement réel de l'air</td><td class="fraik-col c-mid">Ressenti local</td><td class="c-no">✗ Brassage seul</td><td class="c-yes">✓ Oui</td></tr>
+          <tr><td>Effet par évaporation</td><td class="fraik-col c-yes">✓ Oui</td><td class="c-no">✗ Non</td><td class="c-mid">Autre techno</td></tr>
+          <tr><td>Brumisation intégrée</td><td class="fraik-col c-yes">✓ Oui</td><td class="c-no">✗ Non</td><td class="c-no">✗ Non</td></tr>
+          <tr><td>Veilleuse LED 7 couleurs</td><td class="fraik-col c-yes">✓ Oui</td><td class="c-no">✗ Non</td><td class="c-no">✗ Non</td></tr>
+          <tr><td>Diffuseur de parfum</td><td class="fraik-col c-yes">✓ Compatible</td><td class="c-no">✗ Non</td><td class="c-no">✗ Non</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="compare-cards">
+      <div class="ccard ccard-fraik">
+        <div class="ccard-head">Fraîk</div>
+        <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-yes">44,90 €</span></div>
+        <div class="ccard-row"><span class="ccard-label">Disponibilité</span><span class="ccard-val c-yes">✓ En stock, expédié 24-48h</span></div>
+        <div class="ccard-row"><span class="ccard-label">Installation</span><span class="ccard-val c-yes">Aucune (USB)</span></div>
+        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-yes">✓ Pièce par pièce</span></div>
+        <div class="ccard-row"><span class="ccard-label">Refroidissement réel</span><span class="ccard-val c-mid">Ressenti local</span></div>
+        <div class="ccard-row"><span class="ccard-label">Effet par évaporation</span><span class="ccard-val c-yes">✓ Oui</span></div>
+        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-yes">✓ Oui</span></div>
+        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-yes">✓ Oui</span></div>
+        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-yes">✓ Compatible</span></div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-head">Ventilateur classique</div>
+        <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-mid">dès 15 €</span></div>
+        <div class="ccard-row"><span class="ccard-label">Disponibilité</span><span class="ccard-val c-mid">Variable</span></div>
+        <div class="ccard-row"><span class="ccard-label">Installation</span><span class="ccard-val c-mid">Aucune</span></div>
+        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-yes">✓ Léger</span></div>
+        <div class="ccard-row"><span class="ccard-label">Refroidissement réel</span><span class="ccard-val c-no">✗ Brassage seul</span></div>
+        <div class="ccard-row"><span class="ccard-label">Effet par évaporation</span><span class="ccard-val c-no">✗ Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-no">✗ Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-no">✗ Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-no">✗ Non</span></div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-head">Climatiseur mobile</div>
+        <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-mid">150–400 €</span></div>
+        <div class="ccard-row"><span class="ccard-label">Disponibilité</span><span class="ccard-val c-mid">Délais fréquents</span></div>
+        <div class="ccard-row"><span class="ccard-label">Installation</span><span class="ccard-val c-mid">Tuyau requis</span></div>
+        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-no">✗ Encombrant</span></div>
+        <div class="ccard-row"><span class="ccard-label">Refroidissement réel</span><span class="ccard-val c-yes">✓ Oui</span></div>
+        <div class="ccard-row"><span class="ccard-label">Effet par évaporation</span><span class="ccard-val c-mid">Autre techno</span></div>
+        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-no">✗ Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-no">✗ Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-no">✗ Non</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ── Nettoyage ── -->
+<div class="fraik-wrap">
+  <section class="fraik-section" style="border-top:1px solid var(--line);">
+    <div class="fraik-section-head">
+      <div class="fraik-eyebrow">Entretien</div>
+      <h2>Facile à nettoyer</h2>
+    </div>
+    <div class="clean-grid">
+      <div class="clean-card">
+        <img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/fraik-nettoyage-grille.png?v=1783154738" alt="Grille amovible du Fraîk" loading="lazy">
+        <div class="clean-caption">Grille amovible, nettoyage en 30 secondes</div>
+      </div>
+      <div class="clean-card">
+        <img src="https://cdn.shopify.com/s/files/1/0960/1017/4844/files/fraik-nettoyage-dessus.png?v=1783154739" alt="Surface du dessus du Fraîk" loading="lazy">
+        <div class="clean-caption">Surface lisse, un coup de chiffon suffit</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+</div><!-- /fraik-page-flow -->
+
+<!-- ── Sticky ATC mobile ── -->
+<div class="sticky-atc" id="fraik-sticky-atc" aria-hidden="true">
+  <div class="sticky-atc-inner">
+    <div class="sticky-atc-info">
+      <span class="sticky-atc-name">Fraîk</span>
+      <span class="sticky-atc-price">{{ product.price | money_without_currency | append: ' €' }}</span>
+    </div>
+    {% form 'product', product, id: 'fraik-sticky-form', novalidate: 'novalidate' %}
+      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <button type="submit" name="add" class="sticky-atc-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Ajouter{%- else -%}Indisponible{%- endif -%}</button>
+    {% endform %}
+  </div>
+</div>
+
+<script>
+(function(){
+  var heroBtn = document.querySelector('#fraik-product-form [name="add"]');
+  var sticky  = document.getElementById('fraik-sticky-atc');
+  if (!heroBtn || !sticky) return;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { sticky.classList.remove('visible'); sticky.setAttribute('aria-hidden','true'); }
+      else { sticky.classList.add('visible'); sticky.setAttribute('aria-hidden','false'); }
+    });
+  }, { threshold: 0 });
+  obs.observe(heroBtn);
+})();
+
+function fraikToggleReviews(){
+  var el  = document.getElementById('fraik-reviews-more');
+  var btn = document.getElementById('fraik-reviews-btn');
+  if (!el || !btn) return;
+  if (el.style.maxHeight && el.style.maxHeight !== '0px') {
+    el.style.maxHeight = '0px';
+    btn.textContent = 'Voir plus d\'avis (47) ↓';
+  } else {
+    el.style.maxHeight = el.scrollHeight + 'px';
+    btn.textContent = 'Voir moins d\'avis ↑';
+  }
+}
+
+function fraikLbOpen(src,alt){
+  var lb=document.getElementById('fraik-lb');
+  var img=document.getElementById('fraik-lb-img');
+  if(!lb||!img)return;
+  img.src=src;img.alt=alt||'';
+  lb.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function fraikLbClose(){
+  var lb=document.getElementById('fraik-lb');
+  if(!lb)return;
+  lb.classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')fraikLbClose();});
+document.querySelectorAll('.review-avatar-photo img').forEach(function(img){
+  img.addEventListener('click',function(e){e.stopPropagation();fraikLbOpen(this.src,this.alt);});
+});
+var fraikMainImg=document.getElementById('fraik-main-img');
+if(fraikMainImg)fraikMainImg.addEventListener('click',function(e){e.stopPropagation();fraikLbOpen(this.src,this.alt);});
+
+// ---- Variant picker ----
+(function(){
+  if (!document.getElementById('fraik-variant-picker')) return;
+  var variants = {{ product.variants | json }};
+  var currentVar = variants.find(function(v){ return v.id === {{ current_variant.id }}; }) || variants[0];
+  var selOpts = currentVar.options.slice();
+
+  function findVariant(opts) {
+    return variants.find(function(v) {
+      return v.options.every(function(o, i){ return o === opts[i]; });
+    });
+  }
+
+  function fmt(cents) {
+    return (cents / 100).toFixed(2).replace('.',',') + ' €';
+  }
+
+  function applyVariant(v) {
+    if (!v) return;
+    document.querySelectorAll('input[name="id"]').forEach(function(inp){ inp.value = v.id; });
+    var pn = document.querySelector('.price-now');
+    var pt = document.querySelector('.price-then');
+    var ps = document.querySelector('.price-save');
+    var sp = document.querySelector('.sticky-atc-price');
+    if (pn) pn.textContent = fmt(v.price);
+    if (sp) sp.textContent = fmt(v.price);
+    if (v.compare_at_price && v.compare_at_price > v.price) {
+      var pct = Math.round((v.compare_at_price - v.price) * 100 / v.compare_at_price);
+      if (pt) { pt.textContent = fmt(v.compare_at_price); pt.hidden = false; }
+      if (ps) { ps.textContent = '−' + pct + '%'; ps.hidden = false; }
+    } else {
+      if (pt) pt.hidden = true;
+      if (ps) ps.hidden = true;
+    }
+    var hb = document.querySelector('#fraik-product-form [name="add"]');
+    if (hb) {
+      if (v.available) { hb.textContent = 'Je veux sentir la fraîcheur → ' + fmt(v.price); hb.disabled = false; hb.removeAttribute('aria-disabled'); }
+      else { hb.textContent = 'Rupture de stock'; hb.disabled = true; hb.setAttribute('aria-disabled','true'); }
+    }
+    ['fraik-bundle-solo','fraik-bundle-duo','fraik-bundle-trio','fraik-product-form-bottom','fraik-sticky-form'].forEach(function(id){
+      var btn = document.querySelector('#' + id + ' [name="add"]');
+      if (btn) { btn.disabled = !v.available; }
+    });
+  }
+
+  document.querySelectorAll('.fraik-opt-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var pos = parseInt(this.dataset.optionPos, 10) - 1;
+      selOpts[pos] = this.dataset.optionVal;
+      this.closest('.fraik-option-values').querySelectorAll('.fraik-opt-btn').forEach(function(b){ b.classList.remove('active'); });
+      this.classList.add('active');
+      var lbl = document.getElementById('fraik-opt-val-' + this.dataset.optionPos);
+      if (lbl) lbl.textContent = this.dataset.optionVal;
+      applyVariant(findVariant(selOpts));
+    });
+  });
+})();
+</script>
+
+<div class="fraik-lb" id="fraik-lb" role="dialog" aria-modal="true" aria-label="Photo en grand" onclick="if(event.target===this)fraikLbClose()">
+  <button class="fraik-lb-close" onclick="fraikLbClose()" aria-label="Fermer">&#215;</button>
+  <img class="fraik-lb-img" id="fraik-lb-img" src="" alt="">
+</div>
+
+{% schema %}
+{
+  "name": "Fraîk — Produit",
+  "settings": [],
+  "presets": [{ "name": "Fraîk — Produit" }]
+}
+{% endschema %}
+
+{% comment %}
+  ── Companion JSON ──────────────────────────────────────────────────
+  templates/product.fraik.json :
+  { "sections": { "main": { "type": "fraik-product", "settings": {} } }, "order": ["main"] }
+  ────────────────────────────────────────────────────────────────────
+{% endcomment %}
+
