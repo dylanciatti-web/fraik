@@ -67,7 +67,7 @@ La galerie de `shopify/sections/fraik-product.liquid` ne bouclait que sur `produ
 
 ## Actions à faire plus tard
 
-- [ ] Supprimer manuellement le thème de test `fraik V1 — TEST vidéo galerie` (#187895906684) dans l'admin Shopify.
+- [x] ~~Supprimer manuellement le thème de test `fraik V1 — TEST vidéo galerie` (#187895906684) dans l'admin Shopify.~~ Fait le 2026-07-11 (voir `2026-07-10-analyse-clarity-et-banniere-cookies.md`).
 - [ ] Décider du versionnage du projet `video/` (avec ou sans le rendu `.mp4` dans `out/`).
 - [ ] Ajouter `.claude/settings.local.json` au `.gitignore` (config locale, non suivie).
 - [ ] Éventuelle v2 vidéo si besoin d'une version longue (~20 s) : nécessiterait du ralenti (rushes insuffisants à vitesse réelle).

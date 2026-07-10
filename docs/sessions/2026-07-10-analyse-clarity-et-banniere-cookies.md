@@ -74,5 +74,5 @@ Recherche dans le dépôt (`grep` sur "cookies", "consent") : **aucun résultat*
 ## Actions à faire plus tard
 
 - [ ] Commit + push Git de `shopify/layout/theme.liquid` (fait en fin de session, voir commit associé à ce document).
-- [ ] Reprendre l'action en attente de la session précédente : supprimer manuellement le thème de test `fraik V1 — TEST vidéo galerie` (#187895906684) dans l'admin Shopify.
+- [x] ~~Reprendre l'action en attente de la session précédente : supprimer manuellement le thème de test `fraik V1 — TEST vidéo galerie` (#187895906684) dans l'admin Shopify.~~ Fait le 2026-07-11 via `shopify theme delete` (la CLI a fonctionné directement, sans passer par la suppression manuelle dans l'admin qui avait été anticipée).
 - [ ] Surveiller si Shopify modifie un jour la structure DOM de sa bannière Customer Privacy (mise à jour plateforme) — les sélecteurs `.shopify-pc__banner__*` utilisés ne sont pas garantis stables dans le temps par Shopify.
