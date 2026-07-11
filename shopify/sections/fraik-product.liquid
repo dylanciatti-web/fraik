@@ -32,7 +32,7 @@ html{scroll-behavior:smooth;}
 /* ---- Hero ---- */
 .fraik-hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:44px 0 30px;align-items:start;}
 .gallery{position:relative;min-width:0;}
-.gallery-main{aspect-ratio:1/1;background:linear-gradient(155deg,var(--ice),#E4F1F4);border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.gallery-main{aspect-ratio:1/1;background:linear-gradient(155deg,var(--ice),#E4F1F4);border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;touch-action:pan-y;}
 .gallery-tag{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:0.05em;color:var(--navy);background:var(--ice);border:1px solid var(--line);border-radius:4px;padding:5px 12px;margin-bottom:10px;}
 .gallery-thumbs{display:flex;gap:10px;margin-top:12px;}
 .thumb{flex:1;aspect-ratio:1/1;background:var(--ice);border:2px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--cyan-deep);cursor:pointer;overflow:hidden;}
@@ -1461,6 +1461,61 @@ function fraikShowVideo(el){
 
 var fraikMainImg=document.getElementById('fraik-main-img');
 if(fraikMainImg)fraikMainImg.addEventListener('click',function(e){e.stopPropagation();fraikLbOpen(this.src,this.alt);});
+
+// ---- Swipe tactile galerie produit ----
+(function(){
+  var main = document.querySelector('.gallery-main');
+  var thumbsWrap = document.querySelector('.gallery-thumbs');
+  if (!main || !thumbsWrap) return;
+
+  function actionableThumbs(){
+    return Array.prototype.slice.call(thumbsWrap.querySelectorAll('.thumb')).filter(function(t){
+      return t.classList.contains('thumb-video') || t.hasAttribute('data-full');
+    });
+  }
+  function activate(thumb){
+    if (thumb.classList.contains('thumb-video')) fraikShowVideo(thumb);
+    else fraikShowImage(thumb);
+  }
+  function step(dir){
+    var thumbs = actionableThumbs();
+    if (thumbs.length < 2) return;
+    var i = thumbs.findIndex(function(t){ return t.classList.contains('active'); });
+    if (i === -1) i = 0;
+    activate(thumbs[(i + dir + thumbs.length) % thumbs.length]);
+  }
+
+  var startX = 0, startY = 0, axisLocked = null;
+
+  main.addEventListener('touchstart', function(e){
+    if (e.touches.length !== 1) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    axisLocked = null;
+  }, { passive: true });
+
+  main.addEventListener('touchmove', function(e){
+    if (e.touches.length !== 1) return;
+    var dx = e.touches[0].clientX - startX;
+    var dy = e.touches[0].clientY - startY;
+    if (axisLocked === null && (Math.abs(dx) > 6 || Math.abs(dy) > 6)) {
+      axisLocked = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+    }
+    if (axisLocked === 'x' && e.cancelable) e.preventDefault();
+  }, { passive: false });
+
+  main.addEventListener('touchend', function(e){
+    if (axisLocked === 'x') {
+      var dx = e.changedTouches[0].clientX - startX;
+      var threshold = main.offsetWidth * 0.15;
+      if (dx <= -threshold) step(1);
+      else if (dx >= threshold) step(-1);
+    }
+    axisLocked = null;
+  });
+
+  main.addEventListener('touchcancel', function(){ axisLocked = null; });
+})();
 
 // ---- Variant picker ----
 (function(){
