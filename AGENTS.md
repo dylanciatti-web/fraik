@@ -119,8 +119,11 @@ Quand tu modifies du code :
 - Concis, pas de pavés inutiles.
 - Objectif : signaler clairement si une demande, un choix de code ou une idée pose un
   problème réel (sécurité, régression, incohérence), sans juste valider par confort.
-- Avant toute action CLI destructive ou en live, présenter clairement ce qui va être
-  exécuté avant de l'exécuter.
+- **Avant toute tâche non triviale** (pas seulement le CLI destructif/live) : présenter
+  le plan — ce qui va être fait et pourquoi — et attendre la validation explicite de
+  Dylan avant d'exécuter. Ne pas décider puis exécuter dans la foulée. Exception : les
+  actions manifestement demandées sans ambiguïté (ex. « fais X ») n'ont pas besoin d'un
+  second aller-retour de confirmation.
 - Si une tâche gagnerait à être traitée sur un modèle plus puissant (Opus) — code
   multi-fichiers complexe, raisonnement long enchaîné, gros documents — le signaler
   explicitement en début de réponse plutôt que de traiter la tâche en sous-régime.
