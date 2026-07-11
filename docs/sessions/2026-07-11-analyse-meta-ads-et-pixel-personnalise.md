@@ -39,6 +39,17 @@ Cron local (session Claude Code, `CronCreate`) programmé toutes les 30 minutes 
 
 Rouvrir le lien Events Manager ci-dessus. Si toujours vide après un vrai délai d'attente et un nouveau test (page produit + ajout panier), le pixel personnalisé n'est probablement pas viable tel quel (CSP du sandbox trop restrictive même pour `fetch`) et il faudra soit tester un envoi côté serveur (Shopify Flow + webhook vers l'API Conversions, token généré manuellement dans Events Manager sans dépendre de la connexion Shopify cassée), soit attendre la résolution du ticket support Meta.
 
+## Résultat du suivi automatique — 12 juillet 2026, ~00:15 CEST
+
+**Le contournement fonctionne.** Premier tick du cron local ayant trouvé un résultat concret : Events Manager (Ensembles de données → FRAÎK → Vue d'ensemble) affiche désormais une carte « Évènements de site Web » (absente avant) et « Intégrations : Pixel Meta » (avant : « Aucune intégration »). Dans le tableau des événements :
+
+- `PageView` — **13 événements reçus**, statut Actif, dernière réception il y a 23 minutes au moment du check, intégration « Navigateur ».
+- `Vue du contenu` (ViewContent) — **9 événements reçus**, statut Actif, même ancienneté.
+
+`AddToCart`, `InitiateCheckout` et `Purchase` n'ont pas été vérifiés individuellement lors de ce check (liste tronquée par la hauteur de la fenêtre), mais le mécanisme `fetch()` vers `facebook.com/tr` est validé — pas de raison structurelle que les autres événements ne remontent pas aussi puisqu'ils utilisent la même fonction `trackMeta()`. À reconfirmer sur ces événements précis à la prochaine session (déclencher un ATC réel et vérifier).
+
+**Cron de suivi automatique arrêté** (objectif atteint, plus besoin de vérification répétée).
+
 ## Fichiers modifiés
 
 Uniquement le pixel personnalisé dans Shopify (hors dépôt git, configuré via l'admin Shopify). Aucun fichier du thème modifié pendant cette tâche.
