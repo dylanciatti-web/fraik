@@ -109,6 +109,55 @@
 - **Point d'attention pour Codex :** ne pas remodifier ce ratio sans revérifier les
   dimensions réelles des médias — règle ajoutée explicitement dans `AGENTS.md`.
 
+### Analyse Meta Ads + pixel personnalisé Shopify — 11 juillet 2026 (nuit)
+
+- **Constat chiffré revérifié en direct dans Ads Manager (compte FRAIK, vue lifetime) :**
+  47,69 € dépensés (budget 15 €/j), **0 résultat/achat enregistré** sur la campagne et
+  sur les 3 publicités individuellement, 0 vue de landing page trackée. Détail par pub :
+  AD01_VIDEO_V7 24,80 € (CPC 0,48 €, CTR 2,63 %, modification non publiée en attente sur
+  cette pub — à vérifier), AD02_STATIC_VENTILATEUR_CHAUD 8,16 € (nettement la plus
+  efficiente : CPC 0,19 €, CTR 5,27 %), AD03 (désactivée) 14,73 € (CPC 0,92 €, CTR 2,45 %).
+- **Vérité terrain confirmée via Shopify directement (`list-orders`) :** 0 commande,
+  total confondu, sur toute la boutique. Donc 0 € de retour confirmé sur les ~48 €
+  dépensés à ce jour — mais du vrai trafic humain arrive sur le site (CTR cohérent,
+  déjà recoupé avec Clarity dans le diagnostic du 11/07 après-midi).
+- **Cause racine déjà connue :** intégration Shopify↔Meta bloquée par le refus de
+  vérification d'entreprise du portefeuille (doc `docs/sessions/2026-07-11-diagnostic-tracking-meta-verification.md`).
+  Hors de notre contrôle, ticket support Meta `1744227466772293` en attente.
+- **Contournement mis en place, avec accord explicite de Dylan :** création d'un pixel
+  personnalisé Shopify (Réglages → Événements clients → « Meta Pixel FRAIK (manuel) »,
+  ID interne `277840252`), connecté (accès boutique en ligne + paiement + confirmation
+  de commande accordé). Réutilise le dataset FRAÎK existant (`1542660693927295`),
+  **aucun nouveau pixel Meta créé**, conforme à la règle de ne pas créer de nouvel actif.
+  - Confidentialité : autorisation « Requise » sur Marketing + Analyse (cohérent avec le
+    consentement déjà accordé sur le site).
+  - **Première version (chargement de `fbevents.js` + `fbq()`) écartée : le sandbox du
+    pixel personnalisé Shopify semble bloquer le chargement de scripts externes** (aucune
+    requête réseau détectée après plusieurs rechargements malgré une iframe sandbox
+    confirmée active et chargée).
+  - **Version actuellement en place :** envoi direct des événements standards
+    (`PageView`, `ViewContent`, `AddToCart`, `InitiateCheckout`, `Purchase`) via `fetch()`
+    vers `https://www.facebook.com/tr/` (endpoint de tracking Meta sans JS, pattern
+    officiellement documenté par Shopify pour les pixels personnalisés — contrairement au
+    chargement de script, l'envoi `fetch` vers un serveur tiers est le pattern illustré
+    dans la doc officielle Shopify Web Pixels API).
+  - **Statut de vérification : non concluant à la fin de la session.** Ni le pixel Meta
+    ni les outils de capture réseau du navigateur n'ont confirmé de requête sortante ;
+    le tableau de bord Meta Events Manager (Ensembles de données → FRAÎK → Vue d'ensemble)
+    affichait encore « Aucune activité reçue » après un rechargement de page et un ajout
+    au panier de test, **mais Meta indique lui-même un délai de traitement pouvant aller
+    jusqu'à 30 minutes.**
+- **Action à faire en priorité à la prochaine session :** rouvrir
+  <https://business.facebook.com/events_manager2/list/dataset/1542660693927295/overview>
+  et vérifier si des évènements sont enfin apparus. Si toujours vide après un vrai délai
+  d'attente et un nouveau test (page produit + ajout panier), le pixel personnalisé n'est
+  probablement pas viable tel quel (CSP du sandbox trop restrictive même pour `fetch`) et
+  il faudra soit tester un envoi côté serveur (Shopify Flow + webhook vers l'API
+  Conversions, token généré manuellement dans Events Manager sans dépendre de la
+  connexion Shopify cassée), soit attendre la résolution du ticket support Meta.
+- **Fichier modifié :** uniquement le pixel personnalisé dans Shopify (hors dépôt git,
+  configuré via l'admin Shopify). Aucun fichier du thème modifié pendant cette tâche.
+
 ## 1. Résumé exécutif
 
 La seule campagne Meta Ads du test a dépensé environ **40 €**, sans achat et surtout sans ajout au panier. Les publicités génèrent pourtant de vrais clics et les visiteurs arrivent réellement sur Shopify : Clarity retrouve notamment environ **9 sessions Instagram pour 11 clics Meta** sur la période analysée.
