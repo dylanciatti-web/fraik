@@ -72,7 +72,7 @@ Quand tu modifies du code :
 4. **Avant de modifier un fichier sensible** (product.json, cart.json, settings_data.json,
    page.json, ou tout fichier avec un historique de bug) : diff local vs live d'abord.
 5. **Auth Shopify OAuth : uniquement en terminal natif** (Terminal.app/iTerm), jamais dans
-   Claude Code (non-interactif, l'OAuth navigateur échoue).
+   Codex (non-interactif, l'OAuth navigateur échoue).
 6. Commande de push type à réutiliser :
    ```
    cd /Users/Dylan/fraik/shopify && shopify theme push --only sections/fraik-product.liquid --theme 187779088764 --store 17wkw9-2a.myshopify.com --allow-live
@@ -120,9 +120,9 @@ Quand tu modifies du code :
 
 ---
 
-## Continuité avec Codex
+## Continuité avec Codex et Claude Code
 
-`PROJECT_CONTEXT.md` est le handoff partagé entre Claude Code et Codex.
+`PROJECT_CONTEXT.md` est le handoff partagé entre Codex et Claude Code.
 
 Le lire uniquement :
 
