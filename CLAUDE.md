@@ -141,6 +141,12 @@ Le mettre à jour uniquement après un jalon important : décision validée, dia
 confirmé, changement publié, résultat de test, ou blocage nouveau. Le garder concis
 et factuel ; ne pas consigner les micro-étapes.
 
+`PROJECT_CONTEXT.md` doit rester lisible en entier en quelques secondes (état actuel,
+tâches ouvertes, garde-fous). Le détail d'une session (QA, diffs, étapes) va dans un
+fichier daté de `docs/sessions/`, jamais empilé directement dans `PROJECT_CONTEXT.md` —
+n'y ajouter qu'une ligne d'index. S'il redevient long malgré tout, archiver les sections
+datées vers `docs/sessions/` avant d'ajouter du contenu neuf.
+
 Ne pas modifier les actifs Meta, Shopify ou les paramètres de campagne sans
 confirmation explicite de Dylan.
 
