@@ -86,8 +86,28 @@
 
 - Ajouter un bouton ou lien **« Afficher tous les avis »** dans la nouvelle section d'avis premium, renvoyant directement vers la section complète `#fraik-reviews`.
 - Passer les étoiles de la ligne d'avis du hero en vert, de façon cohérente avec les étoiles de la section avis.
-- Corriger le carrousel média : le changement de ratio laisse actuellement des espaces sur les côtés et les médias n'occupent plus correctement toute la zone. Revoir le ratio et `object-fit` sans casser la vidéo en premier.
+- ~~Corriger le carrousel média : le changement de ratio laisse actuellement des espaces sur les côtés et les médias n'occupent plus correctement toute la zone.~~ **Fait le 11 juillet 2026 par Claude Code, voir bloc ci-dessous.**
 - Ces tâches sont à réaliser d'abord sur une copie ou un thème de test. Aucun changement live à appliquer sans validation préalable.
+
+### Session Claude Code — 11 juillet 2026 (soir)
+
+- **Infra multi-agents mise en place :** baseline git complet commité (le thème et les
+  fichiers de handoff avaient été poussés en live/créés sans être commités), `gh` CLI
+  installé et connecté (remplace la gestion manuelle de token), règle de coordination
+  ajoutée dans `AGENTS.md`/`CLAUDE.md` : commit immédiat après tout push live (Claude
+  Code ou Codex), vérifier `git status`/`PROJECT_CONTEXT.md` avant toute tâche à risque.
+- **Fonctionnalité livrée :** swipe tactile sur la galerie photo/vidéo produit
+  (`.gallery-main`) — swipe gauche/droite avance/recule dans les miniatures en
+  réutilisant `fraikShowImage`/`fraikShowVideo` existants, verrouillage d'axe pour ne
+  pas bloquer le scroll vertical, tap simple toujours inchangé (zoom lightbox). Validé
+  sur thème de test (`fraik V4 TEST CRO`, `#187915075964`) avant publication live.
+  Commit `e77cd24`.
+- **Bug corrigé :** barres noires sur les côtés de la galerie mobile (tâche notée
+  ci-dessus). Cause : `.gallery-main{aspect-ratio:3/2}` en mobile ne correspondait plus
+  au format réel des médias (vidéo 1080×1080, 14/15 images 1254×1254 — carré). Remis à
+  `1/1`. Validé sur thème de test puis publié live. Commit `17507e0`.
+- **Point d'attention pour Codex :** ne pas remodifier ce ratio sans revérifier les
+  dimensions réelles des médias — règle ajoutée explicitement dans `AGENTS.md`.
 
 ## 1. Résumé exécutif
 

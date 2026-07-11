@@ -77,6 +77,13 @@ Quand tu modifies du code :
    ```
    cd /Users/Dylan/fraik/shopify && shopify theme push --only sections/fraik-product.liquid --theme 187779088764 --store 17wkw9-2a.myshopify.com --allow-live
    ```
+7. **Ne pas modifier `aspect-ratio` de `.gallery-main` (mobile, `@media(max-width:820px)`)
+   sans vérifier d'abord les dimensions réelles des médias produit.** La vidéo fait
+   1080×1080 et la quasi-totalité des images 1254×1254 (carré, 1:1). Un ratio différent
+   (ex. `3/2`, testé le 11 juillet 2026 pour remonter le CTA) crée des barres noires sur
+   les côtés en `object-fit:contain` — régression déjà survenue une fois, corrigée en
+   remettant `1/1`. Si un gain de hauteur mobile est encore souhaité, le faire ailleurs
+   (padding, gaps) plutôt qu'en cassant ce ratio.
 
 ## Workflow de modification
 
