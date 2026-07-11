@@ -50,6 +50,18 @@ Rouvrir le lien Events Manager ci-dessus. Si toujours vide après un vrai délai
 
 **Cron de suivi automatique arrêté** (objectif atteint, plus besoin de vérification répétée).
 
+## Confirmation AddToCart, InitiateCheckout — 12 juillet 2026, ~00:30–01:30 CEST
+
+Test réel effectué : nouvelle visite PDP → ajout au panier (2ᵉ unité) → ouverture du vrai checkout Shopify (`/checkouts/cn/...`, étape contact/livraison), sans saisir aucune info de paiement ni valider de commande.
+
+- Premier check juste après le test (~00:30) : aucun changement des compteurs, y compris `PageView`/`ViewContent` — pas concluant, l'onglet de test avait potentiellement un état de consentement cookies différent ou un souci de cache.
+- Check suivant à ~01:00 (plus d'1h après le premier test réussi de la nuit) : toujours aucun changement — dépassait la fenêtre de 30 min annoncée par Meta, donc un vrai signal négatif à ce moment-là.
+- **Check à ~01:30 : confirmé.** `Ajout au panier`/AddToCart — 1 événement, Actif. **`Paiement initié`/InitiateCheckout — 1 événement, Actif.** `PageView` 15 → 21 (+6), `Vue du contenu` 9 → 10 (+1). Le retard observé était donc bien un simple délai de traitement Meta plus long que les 30 minutes annoncées, pas un problème du pixel sur la page de checkout.
+
+**Bilan complet du pixel personnalisé :** `PageView`, `ViewContent`, `AddToCart` et `InitiateCheckout` tous confirmés fonctionnels. Seul `Purchase` reste non testé — nécessite une vraie commande passée jusqu'au bout (aucune à ce jour).
+
+**Point de clarification important :** ce pixel n'affecte que les données envoyées à Meta. Rien ne change côté Shopify (analytics, commandes, ni le statut du canal de vente Facebook & Instagram dans l'admin Shopify, qui reste affiché comme non connecté puisque le blocage de vérification d'entreprise, lui, n'est pas résolu).
+
 ## Fichiers modifiés
 
 Uniquement le pixel personnalisé dans Shopify (hors dépôt git, configuré via l'admin Shopify). Aucun fichier du thème modifié pendant cette tâche.

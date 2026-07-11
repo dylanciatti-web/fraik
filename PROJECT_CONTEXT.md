@@ -11,12 +11,12 @@ Ce fichier est volontairement court : un état courant + les tâches ouvertes + 
 
 - **PDP :** version V4.2 live depuis le 11/07 18:53 CEST (vidéo en premier, hero condensé, preuve sociale premium, galerie tactile, ratio galerie mobile 1:1). Lien vers tous les avis + étoiles hero vertes ajoutés le 11/07 (nuit), commit `ca3bbb1`.
 - **Meta Ads :** campagne `FRAIK_TEST_META_100€_V1` active, budget 15 €/j. **47,69 € dépensés, 0 commande Shopify confirmée à ce jour.** AD02 nettement la plus efficiente (CPC 0,19 €, CTR 5,27 %) ; AD01 a une modification non publiée en attente (à vérifier) ; AD03 désactivée depuis le 11/07 18:05 CEST.
-- **Tracking Meta :** connexion Shopify↔Meta toujours bloquée par le refus de vérification d'entreprise (ticket support `1744227466772293` en attente d'un retour humain). **Contournement confirmé fonctionnel le 12 juillet 2026 (~00:15 CEST)** : le pixel personnalisé Shopify (`fetch()` vers `facebook.com/tr`) envoie bien des événements au dataset FRAÎK — `PageView` (13 reçus) et `Vue du contenu`/ViewContent (9 reçus) visibles et actifs dans Events Manager. `AddToCart`/`InitiateCheckout`/`Purchase` pas encore vérifiés individuellement mais le mécanisme est validé.
+- **Tracking Meta :** connexion Shopify↔Meta officielle (canal Facebook & Instagram dans Shopify) toujours bloquée par le refus de vérification d'entreprise (ticket support `1744227466772293` en attente d'un retour humain) — **le contournement ne corrige pas ce statut dans Shopify, il reste affiché comme non connecté.** **Contournement pixel personnalisé confirmé fonctionnel le 12 juillet 2026** : `PageView` (21), `Vue du contenu`/ViewContent (10), `Ajout au panier`/AddToCart (1) et `Paiement initié`/InitiateCheckout (1) tous reçus et actifs dans Events Manager (dataset FRAÎK). Seul `Purchase` reste à vérifier — pas de commande réelle passée à ce jour. Le pixel n'affecte que les données envoyées à Meta ; rien ne change côté Shopify (analytics, commandes, canal Facebook & Instagram).
 - **Bug JS header (`MissingRefError`) :** corrigé, commit `a95e4c7`.
 
 ## Tâches ouvertes
 
-1. Vérifier dans Events Manager que `AddToCart`, `InitiateCheckout` et `Purchase` remontent aussi (seuls PageView/ViewContent sont confirmés à ce stade) — <https://business.facebook.com/events_manager2/list/dataset/1542660693927295/overview>.
+1. Vérifier `Purchase` dans Events Manager dès qu'une vraie commande passe (seul événement encore non testé) — <https://business.facebook.com/events_manager2/list/dataset/1542660693927295/overview>.
 2. Authentifier ou retirer les mentions `4,8/5` / `59 avis vérifiés` si non vérifiables.
 3. Vérifier que garantie 30j/15j, livraison suivie et support France sont réellement assurés avant de les laisser en avant.
 4. Recalculer marge/TVA/livraison/frais/seuil de rentabilité avant tout test de prix ou de bundle.
