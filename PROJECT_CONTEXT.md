@@ -57,6 +57,7 @@ Ne lire que la session pertinente à la tâche en cours.
 - Travailler sur copie/prévisualisation pour tout changement structurel ou à risque.
 - Montrer les diffs risqués avant de les appliquer.
 - Changements minimaux et réversibles.
+- Toute décision validée ou modification doit être consignée dans ce handoff et commitée localement. **Demander l'accord explicite de Dylan avant chaque push GitHub**, y compris pour une mise à jour documentaire.
 - Ne pas écraser le travail de Claude ou d'un autre terminal — vérifier `git status` avant toute tâche à risque.
 - Ne pas publier sans QA et test d'achat complet.
 - Ne pas remodifier `aspect-ratio` de `.gallery-main` sans revérifier les dimensions réelles des médias (vidéo 1080×1080, images 1254×1254 — carré).
