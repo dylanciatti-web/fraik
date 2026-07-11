@@ -3,7 +3,7 @@
 **Boutique :** <https://fraik.fr>
 **PDP :** <https://fraik.fr/products/fraik-ventilateur-3-en-1>
 **Thème live :** `fraik V1`, ID `187779088764`
-**Dernière mise à jour :** 11 juillet 2026 (nuit)
+**Dernière mise à jour :** 12 juillet 2026
 
 Ce fichier est volontairement court : un état courant + les tâches ouvertes + les garde-fous permanents. L'historique détaillé (QA, diffs, décisions datées) vit dans `docs/sessions/` — n'y aller que pour une session précise dont on a besoin, pas à chaque lecture.
 
@@ -21,6 +21,10 @@ Ce fichier est volontairement court : un état courant + les tâches ouvertes + 
 3. Vérifier que garantie 30j/15j, livraison suivie et support France sont réellement assurés avant de les laisser en avant.
 4. Recalculer marge/TVA/livraison/frais/seuil de rentabilité avant tout test de prix ou de bundle.
 5. Confirmer que la causalité stock limité ↔ vague de chaleur (`fraik-stock-badge`) est réelle avant de la laisser en live.
+
+## Décisions récentes
+
+- **Prix :** conserver `44,90 €` pour l'instant. Attendre au moins 15–20 € de dépenses supplémentaires avec le tracking actuel, ou 100 visites qualifiées, avant de tester `39,99 €`. Décision selon le tunnel : 0 ajout panier → ne pas attribuer le problème au prix ; ajouts panier sans checkout → auditer panier/confiance ; checkouts sans achat → `39,99 €` devient un test pertinent. Coût DSers estimé au 12/07 pour la variante blanche vers la France : produit 11,30–12,03 € + livraison 1,99 $ ; retenir 15 € tout compris de façon prudente jusqu'à une première commande fournisseur réelle.
 
 ## Historique détaillé (`docs/sessions/`)
 
