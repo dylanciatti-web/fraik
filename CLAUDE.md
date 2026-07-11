@@ -136,3 +136,18 @@ et factuel ; ne pas consigner les micro-étapes.
 
 Ne pas modifier les actifs Meta, Shopify ou les paramètres de campagne sans
 confirmation explicite de Dylan.
+
+## Coordination multi-agents (Claude Code + Codex)
+
+Claude Code et Codex peuvent tous les deux modifier des fichiers et pousser en live
+sur ce projet de façon autonome. Ça crée un risque réel de désynchronisation entre
+ce que voit git et ce qui est réellement live, ou de travail écrasé entre agents.
+
+- **Commit immédiatement après tout push live**, que ce soit Claude Code ou Codex qui
+  l'ait fait. Ne jamais laisser une modification déjà en live rester non commitée.
+- **Avant de commencer une tâche à risque**, vérifier `git status` et l'état récent de
+  `PROJECT_CONTEXT.md` pour détecter un travail de l'autre agent pas encore commité ou
+  pas encore mergé.
+- La règle "changement structurel ou à risque → thème de test d'abord, validation
+  manuelle avant push live" s'applique à Claude Code **et** à Codex, même si les deux
+  sont capables de pousser directement en live sans confirmation intermédiaire.
