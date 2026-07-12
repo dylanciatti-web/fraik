@@ -3,14 +3,15 @@
 **Boutique :** <https://fraik.fr>
 **PDP :** <https://fraik.fr/products/fraik-ventilateur-3-en-1>
 **Thème live :** `fraik V1`, ID `187779088764`
-**Dernière mise à jour :** 12 juillet 2026
+**Dernière mise à jour :** 12 juillet 2026 (soir)
 
 Ce fichier est volontairement court : un état courant + les tâches ouvertes + les garde-fous permanents. L'historique détaillé (QA, diffs, décisions datées) vit dans `docs/sessions/` — n'y aller que pour une session précise dont on a besoin, pas à chaque lecture.
 
 ## État actuel
 
 - **PDP :** version V4.2 live depuis le 11/07 18:53 CEST (vidéo en premier, hero condensé, preuve sociale premium, galerie tactile, ratio galerie mobile 1:1). Lien vers tous les avis + étoiles hero vertes ajoutés le 11/07 (nuit), commit `ca3bbb1`.
-- **Meta Ads :** campagne `FRAIK_TEST_META_100€_V1` active, budget 15 €/j. **47,69 € dépensés, 0 commande Shopify confirmée à ce jour.** AD02 nettement la plus efficiente (CPC 0,19 €, CTR 5,27 %) ; AD01 a une modification non publiée en attente (à vérifier) ; AD03 désactivée depuis le 11/07 18:05 CEST.
+- **Meta Ads :** campagne `FRAIK_TEST_META_100€_V1`, budget 15 €/j, 47,79 € dépensés, **0 commande Shopify confirmée à ce jour.** AD02 nettement la plus efficiente (CPM 9,77 €, CTR 5,27 %, CPC 0,17 €) — **AD01 désactivée le 12/07** (le brouillon non publié repéré la veille a été abandonné avant coupure, contenu jamais publié) ; AD03 déjà désactivée. **Seule AD02 tourne désormais**, budget quotidien concentré dessus.
+- **Sessions Clarity (12/07)** : trafic Instagram du jour majoritairement des bounces (0–2 sec, 0 clic), cohérent avec le 0 achat. Un **panier abandonné identifié** (produit ajouté, arrivée sur `/cart`, 0 clic, départ en 8 sec) et **deux erreurs JavaScript identiques** ("undefined is not an object") en fin des deux sessions les plus engagées de l'après-midi — source non encore diagnostiquée sur le site live. Détail complet : `docs/sessions/2026-07-12-ads-clarity-ad01-coupee.md`.
 - **Tracking Meta :** connexion Shopify↔Meta officielle (canal Facebook & Instagram dans Shopify) toujours bloquée par le refus de vérification d'entreprise (ticket support `1744227466772293` en attente d'un retour humain) — **le contournement ne corrige pas ce statut dans Shopify, il reste affiché comme non connecté.** **Contournement pixel personnalisé confirmé fonctionnel le 12 juillet 2026** : `PageView` (21), `Vue du contenu`/ViewContent (10), `Ajout au panier`/AddToCart (1) et `Paiement initié`/InitiateCheckout (1) tous reçus et actifs dans Events Manager (dataset FRAÎK). Seul `Purchase` reste à vérifier — pas de commande réelle passée à ce jour. Le pixel n'affecte que les données envoyées à Meta ; rien ne change côté Shopify (analytics, commandes, canal Facebook & Instagram).
 - **Bug JS header (`MissingRefError`) :** corrigé, commit `a95e4c7`.
 
@@ -18,6 +19,7 @@ Ce fichier est volontairement court : un état courant + les tâches ouvertes + 
 
 1. Vérifier `Purchase` dans Events Manager dès qu'une vraie commande passe (seul événement encore non testé) — <https://business.facebook.com/events_manager2/list/dataset/1542660693927295/overview>.
 2. Recalculer marge/TVA/livraison/frais/seuil de rentabilité avant tout test de prix ou de bundle.
+3. Identifier la source de l'erreur JavaScript "undefined is not an object" vue deux fois le 12/07 en fin de session (console navigateur sur fraik.fr).
 
 ## Décisions récentes
 
@@ -39,6 +41,7 @@ Ne lire que la session pertinente à la tâche en cours.
 - `docs/sessions/2026-07-11-refonte-v4-mobile-et-publication.md` — construction et publication live de la V4.1/V4.2
 - `docs/sessions/2026-07-11-infra-multiagents-swipe-galerie-fix-ratio.md` — infra git/gh multi-agents, swipe tactile galerie, fix ratio mobile
 - `docs/sessions/2026-07-11-analyse-meta-ads-et-pixel-personnalise.md` — analyse Meta Ads (0 vente) + mise en place du pixel personnalisé
+- `docs/sessions/2026-07-12-ads-clarity-ad01-coupee.md` — stats par publicité, AD01 désactivée, sessions Clarity du jour (panier abandonné, erreurs JS)
 
 ## Garde-fous permanents
 
