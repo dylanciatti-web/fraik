@@ -275,6 +275,13 @@ details.faq-item[open] summary::after{content:'−';}
 @keyframes fraik-pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 .fraik-stock-badge{font-family:var(--font-mono);font-size:11.5px;font-weight:700;color:#D93025;letter-spacing:0.05em;text-align:center;margin-top:10px;animation:fraik-pulse 1.5s ease-in-out infinite;}
 
+/* ---- Compteur d'intérêt ---- */
+.fraik-interest-counter{display:flex;align-items:center;justify-content:center;gap:9px;margin:18px 0 2px;padding:11px 14px;border:1px solid rgba(50,181,205,0.24);border-radius:8px;background:linear-gradient(135deg,rgba(240,250,252,0.92),rgba(255,255,255,0.98));color:var(--navy);font-size:12px;font-weight:700;letter-spacing:0.01em;box-shadow:0 4px 14px rgba(10,22,40,0.045);}
+.fraik-interest-dot{width:8px;height:8px;flex:0 0 8px;border-radius:50%;background:#32B5CD;box-shadow:0 0 0 4px rgba(50,181,205,0.12);animation:fraik-interest-pulse 2s ease-in-out infinite;}
+.fraik-interest-number{min-width:18px;color:var(--cyan-deep);font-variant-numeric:tabular-nums;}
+@keyframes fraik-interest-pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.55;transform:scale(.86);}}
+@media(prefers-reduced-motion:reduce){.fraik-interest-dot{animation:none;}}
+
 @media(max-width:820px){
   .fraik-wrap{padding:0 18px;}
   .fraik-hero{grid-template-columns:1fr;gap:20px;padding:18px 0 24px;}
@@ -434,6 +441,11 @@ details.faq-item[open] summary::after{content:'−';}
           {%- assign savings_pct = compare_price | minus: sell_price | times: 100 | divided_by: compare_price -%}
           <span class="price-save">−{{ savings_pct }}%</span>
         {%- endif -%}
+      </div>
+
+      <div class="fraik-interest-counter" id="fraik-interest-counter-{{ section.id }}" data-interest-min="{{ section.settings.interest_min }}" data-interest-max="{{ section.settings.interest_max }}" data-interest-interval-min="{{ section.settings.interest_interval_min }}" data-interest-interval-max="{{ section.settings.interest_interval_max }}" role="status" aria-live="polite">
+        <span class="fraik-interest-dot" aria-hidden="true"></span>
+        <span>{{ section.settings.interest_label | escape }} <strong class="fraik-interest-number">{{ section.settings.interest_min }}</strong></span>
       </div>
 
       {%- if product.has_only_default_variant == false -%}
@@ -1356,6 +1368,29 @@ details.faq-item[open] summary::after{content:'−';}
 
 <script>
 (function(){
+  var counter = document.getElementById('fraik-interest-counter-{{ section.id }}');
+  if (!counter) return;
+  var number = counter.querySelector('.fraik-interest-number');
+  var min = parseInt(counter.dataset.interestMin, 10);
+  var max = parseInt(counter.dataset.interestMax, 10);
+  var intervalMin = parseInt(counter.dataset.interestIntervalMin, 10) * 1000;
+  var intervalMax = parseInt(counter.dataset.interestIntervalMax, 10) * 1000;
+  if (!number || !Number.isFinite(min) || !Number.isFinite(max)) return;
+  if (max < min) { var swap = min; min = max; max = swap; }
+  if (!Number.isFinite(intervalMin) || intervalMin < 1000) intervalMin = 20000;
+  if (!Number.isFinite(intervalMax) || intervalMax < intervalMin) intervalMax = 40000;
+  function randomInt(low, high){ return Math.floor(Math.random() * (high - low + 1)) + low; }
+  function schedule(){
+    window.setTimeout(function(){
+      number.textContent = randomInt(min, max);
+      schedule();
+    }, randomInt(intervalMin, intervalMax));
+  }
+  number.textContent = randomInt(min, max);
+  schedule();
+})();
+
+(function(){
   var heroBtn = document.querySelector('#fraik-product-form [name="add"]');
   var sticky  = document.getElementById('fraik-sticky-atc');
   if (!heroBtn || !sticky) return;
@@ -1591,7 +1626,13 @@ if(fraikMainImg)fraikMainImg.addEventListener('click',function(e){e.stopPropagat
 {% schema %}
 {
   "name": "Fraîk — Produit",
-  "settings": [],
+  "settings": [
+    { "type": "text", "id": "interest_label", "label": "Texte du compteur d'intérêt", "default": "Intérêt actuel :" },
+    { "type": "range", "id": "interest_min", "label": "Nombre minimum", "min": 1, "max": 99, "step": 1, "default": 12 },
+    { "type": "range", "id": "interest_max", "label": "Nombre maximum", "min": 1, "max": 99, "step": 1, "default": 32 },
+    { "type": "range", "id": "interest_interval_min", "label": "Intervalle minimum (secondes)", "min": 10, "max": 120, "step": 5, "default": 20 },
+    { "type": "range", "id": "interest_interval_max", "label": "Intervalle maximum (secondes)", "min": 10, "max": 180, "step": 5, "default": 40 }
+  ],
   "presets": [{ "name": "Fraîk — Produit" }]
 }
 {% endschema %}
