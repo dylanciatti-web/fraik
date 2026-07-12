@@ -22,12 +22,13 @@ html{scroll-behavior:smooth;}
 }
 .fraik-wrap{max-width:1200px;margin:0 auto;padding:0 24px;}
 
-/* ---- Bandeau défilant ---- */
-.marquee-bar{background:var(--navy);overflow:hidden;white-space:nowrap;padding:10px 0;}
-.marquee-track{display:inline-block;animation:fraik-scroll 22s linear infinite;font-family:var(--font-mono);font-size:12.5px;letter-spacing:0.06em;color:var(--white);}
-.marquee-track span{margin-right:48px;color:var(--cyan);}
-.mq-urgent{color:#D93025!important;}
-@keyframes fraik-scroll{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+/* ---- Bandeau de confiance ---- */
+.trust-strip{background:var(--white);border-bottom:1px solid var(--line);}
+.trust-strip-inner{max-width:1200px;margin:0 auto;padding:13px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;row-gap:6px;}
+.trust-item{display:flex;align-items:center;gap:7px;padding:0 16px;border-right:1px solid var(--line);}
+.trust-item:last-child{border-right:none;}
+.trust-item svg{flex-shrink:0;}
+.trust-item span{font-family:var(--font-mono);font-size:10.5px;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--steel);white-space:nowrap;}
 
 /* ---- Hero ---- */
 .fraik-hero{display:grid;grid-template-columns:1fr 1fr;gap:50px;padding:44px 0 30px;align-items:start;}
@@ -283,6 +284,9 @@ details.faq-item[open] summary::after{content:'−';}
 @media(prefers-reduced-motion:reduce){.fraik-interest-dot{animation:none;}}
 
 @media(max-width:820px){
+  .trust-strip-inner{padding:11px 14px;}
+  .trust-item{padding:0 10px;gap:5px;}
+  .trust-item span{font-size:9.5px;}
   .fraik-wrap{padding:0 18px;}
   .fraik-hero{grid-template-columns:1fr;gap:20px;padding:18px 0 24px;}
   .gallery-main{aspect-ratio:1/1;}
@@ -348,10 +352,20 @@ details.faq-item[open] summary::after{content:'−';}
 @media(prefers-reduced-motion:reduce){.proof-track{transition:none;}}
 </style>
 
-<div class="marquee-bar">
-  <div class="marquee-track">
-    <span>&#10052;</span> LIVRAISON OFFERTE &nbsp;&nbsp;·&nbsp;&nbsp; BOUTIQUE FRANÇAISE &nbsp;&nbsp;·&nbsp;&nbsp; PAIEMENT SÉCURISÉ &nbsp;&nbsp;·&nbsp;&nbsp; <span class="mq-urgent">🔴 STOCK LIMITÉ</span> &nbsp;&nbsp;·&nbsp;&nbsp;
-    <span>&#10052;</span> LIVRAISON OFFERTE &nbsp;&nbsp;·&nbsp;&nbsp; BOUTIQUE FRANÇAISE &nbsp;&nbsp;·&nbsp;&nbsp; PAIEMENT SÉCURISÉ &nbsp;&nbsp;·&nbsp;&nbsp; <span class="mq-urgent">🔴 STOCK LIMITÉ</span> &nbsp;&nbsp;·&nbsp;&nbsp;
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 6h11v9H2z" stroke="#0092A8" stroke-width="1.6" stroke-linejoin="round"/><path d="M13 10h4l3 3v2h-7z" stroke="#0092A8" stroke-width="1.6" stroke-linejoin="round"/><circle cx="6" cy="17.5" r="1.6" stroke="#0092A8" stroke-width="1.4"/><circle cx="16.5" cy="17.5" r="1.6" stroke="#0092A8" stroke-width="1.4"/></svg>
+      <span>Livraison offerte</span>
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3l7 3v5c0 5-3.2 8.4-7 10-3.8-1.6-7-5-7-10V6l7-3z" stroke="#0092A8" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4.5" stroke="#0092A8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Paiement sécurisé</span>
+    </div>
+    <div class="trust-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 1 1 2.6 5.9" stroke="#0092A8" stroke-width="1.6" stroke-linecap="round"/><path d="M4 17v-4h4" stroke="#0092A8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Retour 15 jours</span>
+    </div>
   </div>
 </div>
 
