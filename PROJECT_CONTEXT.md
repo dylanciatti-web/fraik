@@ -17,14 +17,12 @@ Ce fichier est volontairement court : un état courant + les tâches ouvertes + 
 ## Tâches ouvertes
 
 1. Vérifier `Purchase` dans Events Manager dès qu'une vraie commande passe (seul événement encore non testé) — <https://business.facebook.com/events_manager2/list/dataset/1542660693927295/overview>.
-2. Authentifier ou retirer les mentions `4,8/5` / `59 avis vérifiés` si non vérifiables.
-3. Vérifier que garantie 30j/15j, livraison suivie et support France sont réellement assurés avant de les laisser en avant.
-4. Recalculer marge/TVA/livraison/frais/seuil de rentabilité avant tout test de prix ou de bundle.
-5. Confirmer que la causalité stock limité ↔ vague de chaleur (`fraik-stock-badge`) est réelle avant de la laisser en live.
+2. Recalculer marge/TVA/livraison/frais/seuil de rentabilité avant tout test de prix ou de bundle.
 
 ## Décisions récentes
 
 - **Prix :** conserver `44,90 €` pour l'instant. Attendre au moins 15–20 € de dépenses supplémentaires avec le tracking actuel, ou 100 visites qualifiées, avant de tester `39,99 €`. Décision selon le tunnel : 0 ajout panier → ne pas attribuer le problème au prix ; ajouts panier sans checkout → auditer panier/confiance ; checkouts sans achat → `39,99 €` devient un test pertinent. Coût DSers estimé au 12/07 pour la variante blanche vers la France : produit 11,30–12,03 € + livraison 1,99 $ ; retenir 15 € tout compris de façon prudente jusqu'à une première commande fournisseur réelle.
+- **Avis (`4,8/5` / `59 avis vérifiés`), garanties 30j/15j/livraison suivie/support France, stock-badge (`fraik-stock-badge`) :** tranché par Dylan le 12/07 comme réglés — ne pas rouvrir sans qu'il le redemande. Le stock-badge en particulier : ne pas y toucher.
 
 ## Historique détaillé (`docs/sessions/`)
 
