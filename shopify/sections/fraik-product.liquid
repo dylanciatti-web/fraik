@@ -1299,7 +1299,7 @@ details.faq-item[open] summary::after{content:'−';}
           </tr>
         </thead>
         <tbody>
-          <tr><td>Prix indicatif</td><td class="fraik-col c-yes">44,90 €</td><td class="c-mid">dès 30 €</td><td class="c-mid">150–400 €</td></tr>
+          <tr><td>Prix indicatif</td><td class="fraik-col c-yes">{{ product.price | money_without_currency | append: ' €' }}</td><td class="c-mid">dès 30 €</td><td class="c-mid">150–400 €</td></tr>
           <tr><td>Disponibilité</td><td class="fraik-col c-yes"><span class="ic-yes"></span>En stock, expédié 24-48h</td><td class="c-mid">Variable</td><td class="c-mid">Délais fréquents</td></tr>
           <tr><td>Installation</td><td class="fraik-col c-yes">Aucune (USB)</td><td class="c-mid">Aucune</td><td class="c-mid">Tuyau requis</td></tr>
           <tr><td>Mobilité</td><td class="fraik-col c-yes"><span class="ic-yes"></span>Pièce par pièce</td><td class="c-mid">Léger</td><td class="c-no"><span class="ic-no"></span>Encombrant</td></tr>
@@ -1315,7 +1315,7 @@ details.faq-item[open] summary::after{content:'−';}
     <div class="compare-cards">
       <div class="ccard ccard-fraik">
         <div class="ccard-head">Fraîk</div>
-        <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-yes">44,90 €</span></div>
+        <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-yes">{{ product.price | money_without_currency | append: ' €' }}</span></div>
         <div class="ccard-row"><span class="ccard-label">Disponibilité</span><span class="ccard-val c-yes"><span class="ic-yes"></span>En stock, expédié 24-48h</span></div>
         <div class="ccard-row"><span class="ccard-label">Installation</span><span class="ccard-val c-yes">Aucune (USB)</span></div>
         <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-yes"><span class="ic-yes"></span>Pièce par pièce</span></div>
