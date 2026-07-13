@@ -226,6 +226,9 @@ html{scroll-behavior:smooth;}
 .c-yes{color:var(--cyan-deep);font-weight:700;}
 .c-no{color:#B0C4CC;}
 .c-mid{color:var(--steel);}
+.ic-yes,.ic-no{display:inline-block;width:12px;height:12px;margin-right:5px;vertical-align:-1px;background-repeat:no-repeat;background-position:center;background-size:contain;}
+.ic-yes{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M4 12.5l5 5L20 6' stroke='%230092A8' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");}
+.ic-no{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5 5l14 14M19 5L5 19' stroke='%23B0C4CC' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E");}
 .compare-cards{display:none;}
 
 /* ---- FAQ ---- */
@@ -484,6 +487,7 @@ details.faq-item[open] summary::after{content:'−';}
 
       {% form 'product', product, id: 'fraik-product-form', novalidate: 'novalidate' %}
         <input type="hidden" name="id" value="{{ current_variant.id }}">
+        <input type="hidden" name="return_to" value="/checkout">
         <button type="submit" name="add" class="fraik-btn"
           {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>
           {%- if product.available -%}Je veux sentir la fraîcheur → {{ product.price | money_without_currency | append: ' €' }}{%- else -%}Rupture de stock{%- endif -%}
@@ -1175,6 +1179,7 @@ details.faq-item[open] summary::after{content:'−';}
         {% form 'product', product, id: 'fraik-bundle-solo', novalidate: 'novalidate' %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
           <input type="hidden" name="quantity" value="1">
+          <input type="hidden" name="return_to" value="/checkout">
           <button type="submit" name="add" class="fraik-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Commander →{%- else -%}Rupture de stock{%- endif -%}</button>
         {% endform %}
       </div>
@@ -1192,6 +1197,7 @@ details.faq-item[open] summary::after{content:'−';}
         {% form 'product', product, id: 'fraik-bundle-duo', novalidate: 'novalidate' %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
           <input type="hidden" name="quantity" value="2">
+          <input type="hidden" name="return_to" value="/checkout">
           <button type="submit" name="add" class="fraik-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Commander →{%- else -%}Rupture de stock{%- endif -%}</button>
         {% endform %}
       </div>
@@ -1208,6 +1214,7 @@ details.faq-item[open] summary::after{content:'−';}
         {% form 'product', product, id: 'fraik-bundle-trio', novalidate: 'novalidate' %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
           <input type="hidden" name="quantity" value="3">
+          <input type="hidden" name="return_to" value="/checkout">
           <button type="submit" name="add" class="fraik-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Commander →{%- else -%}Rupture de stock{%- endif -%}</button>
         {% endform %}
       </div>
@@ -1267,6 +1274,7 @@ details.faq-item[open] summary::after{content:'−';}
     <p>Livraison estimée sous 3 à 5 jours ouvrés. Commande avant la prochaine vague de chaleur.</p>
     {% form 'product', product, id: 'fraik-product-form-bottom', novalidate: 'novalidate' %}
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <input type="hidden" name="return_to" value="/checkout">
       <button type="submit" name="add" class="fraik-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Je commande maintenant →{%- else -%}Rupture de stock{%- endif -%}</button>
     {% endform %}
     <p class="fraik-stock-badge" style="color:#FF6B6B;">🔴 Plus que quelques unités en stock suite à la vague de chaleur</p>
@@ -1291,15 +1299,16 @@ details.faq-item[open] summary::after{content:'−';}
           </tr>
         </thead>
         <tbody>
-          <tr><td>Prix indicatif</td><td class="fraik-col c-yes">44,90 €</td><td class="c-mid">dès 15 €</td><td class="c-mid">150–400 €</td></tr>
-          <tr><td>Disponibilité</td><td class="fraik-col c-yes">✓ En stock, expédié 24-48h</td><td class="c-mid">Variable</td><td class="c-mid">Délais fréquents</td></tr>
+          <tr><td>Prix indicatif</td><td class="fraik-col c-yes">44,90 €</td><td class="c-mid">dès 30 €</td><td class="c-mid">150–400 €</td></tr>
+          <tr><td>Disponibilité</td><td class="fraik-col c-yes"><span class="ic-yes"></span>En stock, expédié 24-48h</td><td class="c-mid">Variable</td><td class="c-mid">Délais fréquents</td></tr>
           <tr><td>Installation</td><td class="fraik-col c-yes">Aucune (USB)</td><td class="c-mid">Aucune</td><td class="c-mid">Tuyau requis</td></tr>
-          <tr><td>Mobilité</td><td class="fraik-col c-yes">✓ Pièce par pièce</td><td class="c-yes">✓ Léger</td><td class="c-no">✗ Encombrant</td></tr>
-          <tr><td>Refroidissement réel de l'air</td><td class="fraik-col c-mid">Ressenti local</td><td class="c-no">✗ Brassage seul</td><td class="c-yes">✓ Oui</td></tr>
-          <tr><td>Effet par évaporation</td><td class="fraik-col c-yes">✓ Oui</td><td class="c-no">✗ Non</td><td class="c-mid">Autre techno</td></tr>
-          <tr><td>Brumisation intégrée</td><td class="fraik-col c-yes">✓ Oui</td><td class="c-no">✗ Non</td><td class="c-no">✗ Non</td></tr>
-          <tr><td>Veilleuse LED 7 couleurs</td><td class="fraik-col c-yes">✓ Oui</td><td class="c-no">✗ Non</td><td class="c-no">✗ Non</td></tr>
-          <tr><td>Diffuseur de parfum</td><td class="fraik-col c-yes">✓ Compatible</td><td class="c-no">✗ Non</td><td class="c-no">✗ Non</td></tr>
+          <tr><td>Mobilité</td><td class="fraik-col c-yes"><span class="ic-yes"></span>Pièce par pièce</td><td class="c-mid">Léger</td><td class="c-no"><span class="ic-no"></span>Encombrant</td></tr>
+          <tr><td>Consommation électrique</td><td class="fraik-col c-yes"><span class="ic-yes"></span>Faible (USB, ~5 W)</td><td class="c-mid">Faible (~40 W)</td><td class="c-no"><span class="ic-no"></span>Élevée (900–1500 W)</td></tr>
+          <tr><td>Refroidissement réel de l'air</td><td class="fraik-col c-mid">Ressenti local</td><td class="c-no"><span class="ic-no"></span>Brassage seul</td><td class="c-yes"><span class="ic-yes"></span>Oui</td></tr>
+          <tr><td>Effet par évaporation</td><td class="fraik-col c-yes"><span class="ic-yes"></span>Oui</td><td class="c-no"><span class="ic-no"></span>Non</td><td class="c-mid">Autre techno</td></tr>
+          <tr><td>Brumisation intégrée</td><td class="fraik-col c-yes"><span class="ic-yes"></span>Oui</td><td class="c-no"><span class="ic-no"></span>Non</td><td class="c-no"><span class="ic-no"></span>Non</td></tr>
+          <tr><td>Veilleuse LED 7 couleurs</td><td class="fraik-col c-yes"><span class="ic-yes"></span>Oui</td><td class="c-no"><span class="ic-no"></span>Non</td><td class="c-no"><span class="ic-no"></span>Non</td></tr>
+          <tr><td>Diffuseur de parfum</td><td class="fraik-col c-yes"><span class="ic-yes"></span>Compatible</td><td class="c-no"><span class="ic-no"></span>Non</td><td class="c-no"><span class="ic-no"></span>Non</td></tr>
         </tbody>
       </table>
     </div>
@@ -1307,38 +1316,41 @@ details.faq-item[open] summary::after{content:'−';}
       <div class="ccard ccard-fraik">
         <div class="ccard-head">Fraîk</div>
         <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-yes">44,90 €</span></div>
-        <div class="ccard-row"><span class="ccard-label">Disponibilité</span><span class="ccard-val c-yes">✓ En stock, expédié 24-48h</span></div>
+        <div class="ccard-row"><span class="ccard-label">Disponibilité</span><span class="ccard-val c-yes"><span class="ic-yes"></span>En stock, expédié 24-48h</span></div>
         <div class="ccard-row"><span class="ccard-label">Installation</span><span class="ccard-val c-yes">Aucune (USB)</span></div>
-        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-yes">✓ Pièce par pièce</span></div>
-        <div class="ccard-row"><span class="ccard-label">Refroidissement réel</span><span class="ccard-val c-mid">Ressenti local</span></div>
-        <div class="ccard-row"><span class="ccard-label">Effet par évaporation</span><span class="ccard-val c-yes">✓ Oui</span></div>
-        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-yes">✓ Oui</span></div>
-        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-yes">✓ Oui</span></div>
-        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-yes">✓ Compatible</span></div>
+        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-yes"><span class="ic-yes"></span>Pièce par pièce</span></div>
+        <div class="ccard-row"><span class="ccard-label">Consommation électrique</span><span class="ccard-val c-yes"><span class="ic-yes"></span>Faible (USB, ~5 W)</span></div>
+        <div class="ccard-row"><span class="ccard-label">Refroidissement réel de l'air</span><span class="ccard-val c-mid">Ressenti local</span></div>
+        <div class="ccard-row"><span class="ccard-label">Effet par évaporation</span><span class="ccard-val c-yes"><span class="ic-yes"></span>Oui</span></div>
+        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-yes"><span class="ic-yes"></span>Oui</span></div>
+        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-yes"><span class="ic-yes"></span>Oui</span></div>
+        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-yes"><span class="ic-yes"></span>Compatible</span></div>
       </div>
       <div class="ccard">
         <div class="ccard-head">Ventilateur classique</div>
-        <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-mid">dès 15 €</span></div>
+        <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-mid">dès 30 €</span></div>
         <div class="ccard-row"><span class="ccard-label">Disponibilité</span><span class="ccard-val c-mid">Variable</span></div>
         <div class="ccard-row"><span class="ccard-label">Installation</span><span class="ccard-val c-mid">Aucune</span></div>
-        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-yes">✓ Léger</span></div>
-        <div class="ccard-row"><span class="ccard-label">Refroidissement réel</span><span class="ccard-val c-no">✗ Brassage seul</span></div>
-        <div class="ccard-row"><span class="ccard-label">Effet par évaporation</span><span class="ccard-val c-no">✗ Non</span></div>
-        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-no">✗ Non</span></div>
-        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-no">✗ Non</span></div>
-        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-no">✗ Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-mid">Léger</span></div>
+        <div class="ccard-row"><span class="ccard-label">Consommation électrique</span><span class="ccard-val c-mid">Faible (~40 W)</span></div>
+        <div class="ccard-row"><span class="ccard-label">Refroidissement réel de l'air</span><span class="ccard-val c-no"><span class="ic-no"></span>Brassage seul</span></div>
+        <div class="ccard-row"><span class="ccard-label">Effet par évaporation</span><span class="ccard-val c-no"><span class="ic-no"></span>Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-no"><span class="ic-no"></span>Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-no"><span class="ic-no"></span>Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-no"><span class="ic-no"></span>Non</span></div>
       </div>
       <div class="ccard">
         <div class="ccard-head">Climatiseur mobile</div>
         <div class="ccard-row"><span class="ccard-label">Prix indicatif</span><span class="ccard-val c-mid">150–400 €</span></div>
         <div class="ccard-row"><span class="ccard-label">Disponibilité</span><span class="ccard-val c-mid">Délais fréquents</span></div>
         <div class="ccard-row"><span class="ccard-label">Installation</span><span class="ccard-val c-mid">Tuyau requis</span></div>
-        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-no">✗ Encombrant</span></div>
-        <div class="ccard-row"><span class="ccard-label">Refroidissement réel</span><span class="ccard-val c-yes">✓ Oui</span></div>
+        <div class="ccard-row"><span class="ccard-label">Mobilité</span><span class="ccard-val c-no"><span class="ic-no"></span>Encombrant</span></div>
+        <div class="ccard-row"><span class="ccard-label">Consommation électrique</span><span class="ccard-val c-no"><span class="ic-no"></span>Élevée (900–1500 W)</span></div>
+        <div class="ccard-row"><span class="ccard-label">Refroidissement réel de l'air</span><span class="ccard-val c-yes"><span class="ic-yes"></span>Oui</span></div>
         <div class="ccard-row"><span class="ccard-label">Effet par évaporation</span><span class="ccard-val c-mid">Autre techno</span></div>
-        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-no">✗ Non</span></div>
-        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-no">✗ Non</span></div>
-        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-no">✗ Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Brumisation intégrée</span><span class="ccard-val c-no"><span class="ic-no"></span>Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Veilleuse LED 7 couleurs</span><span class="ccard-val c-no"><span class="ic-no"></span>Non</span></div>
+        <div class="ccard-row"><span class="ccard-label">Diffuseur de parfum</span><span class="ccard-val c-no"><span class="ic-no"></span>Non</span></div>
       </div>
     </div>
   </section>
@@ -1376,6 +1388,7 @@ details.faq-item[open] summary::after{content:'−';}
     </div>
     {% form 'product', product, id: 'fraik-sticky-form', novalidate: 'novalidate' %}
       <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+      <input type="hidden" name="return_to" value="/checkout">
       <button type="submit" name="add" class="sticky-atc-btn" {%- unless product.available %} disabled aria-disabled="true"{%- endunless -%}>{%- if product.available -%}Ajouter{%- else -%}Indisponible{%- endif -%}</button>
     {% endform %}
   </div>
