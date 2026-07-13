@@ -1594,6 +1594,13 @@ if(fraikMainImg)fraikMainImg.addEventListener('click',function(e){e.stopPropagat
   var currentVar = variants.find(function(v){ return v.id === {{ current_variant.id }}; }) || variants[0];
   var selOpts = currentVar.options.slice();
 
+  var variantImageMap = {};
+  {%- for v in product.variants -%}
+    {%- if v.featured_image -%}
+  variantImageMap[{{ v.id }}] = {{ v.featured_image | image_url: width: 900 | json }};
+    {%- endif -%}
+  {%- endfor -%}
+
   function findVariant(opts) {
     return variants.find(function(v) {
       return v.options.every(function(o, i){ return o === opts[i]; });
@@ -1630,6 +1637,18 @@ if(fraikMainImg)fraikMainImg.addEventListener('click',function(e){e.stopPropagat
       var btn = document.querySelector('#' + id + ' [name="add"]');
       if (btn) { btn.disabled = !v.available; }
     });
+
+    var imgUrl = variantImageMap[v.id];
+    if (imgUrl) {
+      var img = document.getElementById('fraik-main-img');
+      var vid = document.getElementById('fraik-main-video');
+      if (vid) { vid.pause(); vid.style.display = 'none'; }
+      if (img) { img.src = imgUrl; img.style.display = ''; }
+      var thumbs = document.querySelectorAll('.thumb[data-full]');
+      for (var i = 0; i < thumbs.length; i++) {
+        if (thumbs[i].getAttribute('data-full') === imgUrl) { fraikSetActiveThumb(thumbs[i]); break; }
+      }
+    }
   }
 
   document.querySelectorAll('.fraik-opt-btn').forEach(function(btn){
