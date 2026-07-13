@@ -1189,9 +1189,9 @@ details.faq-item[open] summary::after{content:'−';}
         <div class="bundle-name">Duo</div>
         <div class="bundle-desc">Chambre + bureau, ou en offrir un</div>
         <div class="bundle-price-block">
-          <span class="price-then">89,80 €</span>
+          <span class="price-then">{{ product.price | times: 2 | money_without_currency | append: ' €' }}</span>
           <div class="bundle-price-row">
-            <div class="bundle-price">79,90 €</div><span class="price-save">−11%</span>
+            <div class="bundle-price">69,99 €</div><span class="price-save">−12%</span>
           </div>
         </div>
         {% form 'product', product, id: 'fraik-bundle-duo', novalidate: 'novalidate' %}
@@ -1206,9 +1206,9 @@ details.faq-item[open] summary::after{content:'−';}
         <div class="bundle-name">Trio</div>
         <div class="bundle-desc">Toute la maison au frais</div>
         <div class="bundle-price-block">
-          <span class="price-then">134,70 €</span>
+          <span class="price-then">{{ product.price | times: 3 | money_without_currency | append: ' €' }}</span>
           <div class="bundle-price-row">
-            <div class="bundle-price">104,90 €</div><span class="price-save">−22%</span>
+            <div class="bundle-price">99,99 €</div><span class="price-save">−17%</span>
           </div>
         </div>
         {% form 'product', product, id: 'fraik-bundle-trio', novalidate: 'novalidate' %}
