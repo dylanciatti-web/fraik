@@ -62,6 +62,15 @@ Quand tu modifies du code :
 - explique toujours les changements importants avant de les appliquer lorsqu'ils sont
   susceptibles d'avoir un impact sur plusieurs fichiers.
 
+## Efficacité des outils (usage du contexte)
+
+- Ne jamais relire en entier un fichier qu'on vient soi-même de modifier via Edit/Write
+  dans la même session, sauf doute réel sur son état — la confirmation de l'outil suffit.
+- Pour analyser une vidéo/image où seul le texte ou le contenu grossier compte (ex.
+  vérifier une créa, une capture d'écran, un post), extraire les frames en basse
+  résolution (`ffmpeg ... scale=480:-1` ou équivalent) plutôt qu'en qualité native, et
+  n'en extraire que quelques-unes à la fois plutôt qu'un lot large "au cas où".
+
 ## Règles CLI — non négociables
 
 1. **Jamais de `shopify theme push` global sur le thème live.** Toujours `--only <fichier>` ciblé.
