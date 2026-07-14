@@ -7,6 +7,12 @@
 
 Ce fichier est volontairement court : un état courant + les tâches ouvertes + les garde-fous permanents. L'historique détaillé (QA, diffs, décisions datées) vit dans `docs/sessions/` — n'y aller que pour une session précise dont on a besoin, pas à chaque lecture.
 
+## Statut : Fraïk arrêté (14/07/2026)
+
+**Décision de Dylan : arrêt du produit.** Après ~75 € de budget pub total (60 € phase initiale + 15 € test final V8), 0 ATC et 0 commande sur l'ensemble de la période. Raisonnement assumé par Dylan : même en poussant à ~200 € de budget pour obtenir 1-2 ventes, le profit resterait de l'ordre de 40 € — pas un signal de produit qui peut fonctionner, plutôt un rejet marché à ce prix/positionnement. Pas de nouvel angle jugé prometteur pour relancer un test. **Nuance signalée une fois (échantillon ~75 € reste statistiquement petit) puis actée sans insister, comme demandé.**
+
+Conséquence pratique : plus aucune action technique ou publicitaire sur Fraïk sans que Dylan ne rouvre le sujet explicitement. Les garde-fous et l'historique ci-dessous restent en l'état pour référence si le produit ou un produit similaire est repris plus tard.
+
 ## État actuel
 
 - **Test final 15 € terminé (14/07) : palier atteint, 0 ATC, 0 commande — campagne coupée par Dylan.** Confirmé côté Shopify (`list-orders` → 0 commande sur 20 dernières) et confirmé par Dylan lui-même. Ça correspond à la branche "arrêter" de la règle de décision actée la veille (CTR ok + 0 ATC → on arrête Fraïk, pas de nouveau fix technique). **Aucune pub Fraîk active à ce jour.** Prochaine décision (relancer un budget, tester un autre angle, ou arrêter le produit) à prendre par Dylan — pas de nouvelle action technique engagée sans son accord explicite.
@@ -28,10 +34,12 @@ Ce fichier est volontairement court : un état courant + les tâches ouvertes + 
 
 ## Tâches ouvertes
 
-1. Vérifier que l'ensemble de pubs optimise bien sur le dataset FRAÎK et l'événement `Purchase` ; s'il affiche encore qu'aucun événement de conversion n'est configuré, couper avant toute dépense supplémentaire.
-2. ~~Laisser uniquement AD02 tester...~~ **Traitée (13/07 soir), puis test final V8 traité (14/07) :** palier de 15 € atteint, 0 ATC, 0 commande confirmés, campagne coupée par Dylan. Règle de décision appliquée : branche "arrêter". **Décision à prendre par Dylan :** relancer un budget/angle différent, ou arrêter le produit.
-3. Vérifier `Purchase` dans Events Manager dès qu'une vraie commande passe (seul événement encore non testé) — <https://business.facebook.com/events_manager2/list/dataset/1542660693927295/overview>.
-4. Erreur JavaScript "undefined is not an object" du 12/07 : **piste probable trouvée (13/07 soir)**, semble venir du script tiers Microsoft Clarity et non du code Fraïk (voir État actuel) — à confirmer si elle réapparaît, mais plus considérée comme un bug potentiel côté thème.
+**Toutes sans objet depuis l'arrêt du produit (14/07/2026)** — conservées pour mémoire/reprise éventuelle, aucune à traiter tant que Dylan ne relance pas Fraïk.
+
+1. ~~Vérifier que l'ensemble de pubs optimise bien sur le dataset FRAÎK...~~ Sans objet, aucune pub active.
+2. ~~Laisser uniquement AD02 tester...~~ **Traitée :** palier de 15 € atteint, 0 ATC, 0 commande confirmés, campagne coupée par Dylan. Règle de décision appliquée : branche "arrêter". **Décision finale de Dylan (14/07) : arrêt du produit**, pas de relance.
+3. ~~Vérifier `Purchase` dans Events Manager...~~ Sans objet, aucune commande n'a été passée sur toute la durée du test.
+4. Erreur JavaScript "undefined is not an object" du 12/07 : piste probable (script tiers Microsoft Clarity, pas Fraïk) — non prioritaire, produit arrêté.
 
 ## Décisions récentes
 
